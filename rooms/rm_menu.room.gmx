@@ -61,8 +61,6 @@ randomize()</code>
     <instance objName="obj_binder" x="508" y="355" name="inst_646550C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_zombie_mode" x="588" y="417" name="inst_6C257846" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stats_controller" x="128" y="0" name="inst_7C5FF1D6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_unlock" x="338" y="227" name="inst_9A3D51FC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_unlock" x="338" y="259" name="inst_B81A6A5C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_snitchball" x="96" y="192" name="inst_9EA47C6E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_onlineplay" x="269" y="238" name="inst_DF14EED0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_controller" x="96" y="0" name="inst_2F094E6E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

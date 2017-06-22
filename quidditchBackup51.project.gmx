@@ -5184,7 +5184,6 @@
       <object>objects\obj_how_to_play</object>
       <object>objects\obj_playmaker</object>
       <object>objects\obj_advanced_tab</object>
-      <object>objects\obj_simulate_button</object>
       <object>objects\obj_back_tab</object>
       <object>objects\obj_extrabutton</object>
       <object>objects\obj_statsbutton</object>
@@ -5226,6 +5225,7 @@
       <object>objects\obj_1v1test</object>
       <object>objects\obj_join_lobby</object>
       <object>objects\obj_onlineplay</object>
+      <object>objects\obj_simulate_button</object>
     </objects>
     <objects name="legacy">
       <object>objects\obj_replayscreen</object>

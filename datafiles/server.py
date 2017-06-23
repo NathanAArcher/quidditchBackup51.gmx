@@ -1,0 +1,2 @@
+import suspengine
+app = suspengine

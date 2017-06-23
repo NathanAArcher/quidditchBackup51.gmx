@@ -5000,6 +5000,14 @@
     <path>paths\pth_bounce</path>
   </paths>
   <scripts name="scripts">
+    <scripts name="suspendee">
+      <script>scripts\network_disconnect.gml</script>
+      <script>scripts\network_server.gml</script>
+      <script>scripts\network_listen.gml</script>
+      <script>scripts\network_handle.gml</script>
+      <script>scripts\network_emit.gml</script>
+      <script>scripts\network_init.gml</script>
+    </scripts>
     <scripts name="sounds">
       <script>scripts\scr_bludger_sound.gml</script>
       <script>scripts\scr_immunity_sound.gml</script>
@@ -5322,9 +5330,9 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
+    <room>rooms\rm_lobby_search</room>
     <room>rooms\rm_lobby</room>
     <room>rooms\rm_online_lobby</room>
-    <room>rooms\rm_lobby_search</room>
     <room>rooms\rm_tutorial</room>
     <room>rooms\rm_card_test</room>
     <room>rooms\rm_test</room>

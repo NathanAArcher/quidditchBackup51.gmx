@@ -3018,7 +3018,7 @@ if room == rm_test or room == rm_alt or room == rm_tutorial_alt{
     draw_text(x+320, y+404, "POWER UP")
     //draw_text_transformed(x+320, view_yview+404+(global.fovadjustment*480/640), "POWER UP", 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0)
     draw_set_halign(fa_left)
-    draw_text(x+324, y+432, global.playername + " (Press SPACE and CTRL to switch between players)")
+    draw_text(x+324, y+432, global.playername + " (SPACE/CTRL to switch players)")
     //draw_text_transformed(x+324, view_yview+432+(global.fovadjustment*480/640), global.playername, 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0)
     
     if instance_exists(obj_player_test){

@@ -7947,28 +7947,32 @@ thoughts = thoughts + "kick to mouse"
 
 other.throw_leway = 15
 
-if(bounce &gt;= 1){
+/*if(bounce &gt;= 1){
     slow_down = true
     bounce = 0
     exit
-}
+}*/
 
-global.throw = other.st_power/2
+global.throw = (other.st_power/2)
 
 with instance_create(x, y, obj_exclam){
+    speed = 10
     img_id = 10
 }
 
-scr_set_quaffle_destination(mouse_x+random(2*(global.var_radius))-global.var_radius,mouse_y, 3+(global.throw))
-sprite_index = spr_ball
-image_index = image_index
-image_speed = 0
-initialspeed = destinationspeed
-move_towards_point(destinationx, destinationy, destinationspeed)
-bounce = 1
-bouncespeed = speed
-slow_down = true
-thoughts = thoughts + "kick to mouse"
+if(bounce != 1){
+    other.throw_leway = 10
+    scr_set_quaffle_destination(mouse_x+random(2*(global.var_radius))-global.var_radius,mouse_y, 3+(global.throw))
+    sprite_index = spr_ball
+    image_index = image_index
+    image_speed = 0
+    initialspeed = destinationspeed
+    move_towards_point(destinationx, destinationy, destinationspeed)
+    bounce = 1
+    bouncespeed = speed
+    slow_down = true
+    thoughts = thoughts + "kick to mouse"
+}
 </string>
           </argument>
         </arguments>

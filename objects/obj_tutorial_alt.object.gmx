@@ -730,6 +730,8 @@ commandY = -1
             <kind>1</kind>
             <string>image_speed = 1/4
 image_index += 1/4
+
+draw_direction = point_direction(x, y, obj_player_test.x, obj_player_test.y)
 </string>
           </argument>
         </arguments>
@@ -5704,20 +5706,22 @@ instance_create(2400+56*i, 2976, obj_zombie)
     move_towards_point(1152, 384, moving_speed)
 }*/
 
+sprint = 0;
+
 if(commandX &lt; 1){ //if -1 or 0
-    commandX = 1152+irandom(128)
+    commandX = 1088+irandom(128)
     commandY = 384+irandom(128)
 }
 
 if(distance_to_point(commandX, commandY) &lt; 8){
-    commandX = 1152+irandom(128)
+    commandX = 1088+irandom(128)
     commandY = 384+irandom(128)
 }else{
     move_towards_point(commandX, commandY, moving_speed)
 }
 
 if(instance_exists(obj_passmarker)){
-    if(distance_to_point(obj_passmarker.x, obj_passmarker.y-8) &lt; 64){
+    if(distance_to_point(obj_passmarker.x, obj_passmarker.y-8) &lt; 80){
         move_towards_point(obj_passmarker.x, obj_passmarker.y-8, moving_speed)    
     }
     if(distance_to_point(obj_passmarker.x, obj_passmarker.y-8) &lt; 4){
@@ -6622,6 +6626,8 @@ st_position = 2
 }*/
 
 move_towards_point(obj_player_test.x, obj_player_test.y, 0)
+
+windup = 0
 </string>
           </argument>
         </arguments>

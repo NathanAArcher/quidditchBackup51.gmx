@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="455" name="datafiles">
-    <datafiles number="455" name="player_heads">
+  <datafiles number="457" name="datafiles">
+    <datafiles number="457" name="player_heads">
       <datafile>
         <name>spr_player1_head_strip8.png</name>
         <exists>-1</exists>
@@ -1281,7 +1281,7 @@
         <filename>spr_player75_head_strip8.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="players">
+    <datafiles number="457" name="players">
       <datafile>
         <name>player1.png</name>
         <exists>-1</exists>
@@ -2558,7 +2558,7 @@
         <filename>player75.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="shirts">
+    <datafiles number="457" name="shirts">
       <datafile>
         <name>shirt1.png</name>
         <exists>-1</exists>
@@ -3835,7 +3835,7 @@
         <filename>shirt16.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="logos">
+    <datafiles number="457" name="logos">
       <datafile>
         <name>logo1.png</name>
         <exists>-1</exists>
@@ -4160,7 +4160,7 @@
         <filename>logo19.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="logos_secondary">
+    <datafiles number="457" name="logos_secondary">
       <datafile>
         <name>logosecondary1.png</name>
         <exists>-1</exists>
@@ -4485,7 +4485,7 @@
         <filename>logosecondary19.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="data">
+    <datafiles number="457" name="data">
       <datafile>
         <name>defpresets.txt</name>
         <exists>-1</exists>
@@ -4504,6 +4504,40 @@
         <filename>defpresets.txt</filename>
       </datafile>
     </datafiles>
+    <datafile>
+      <name>suspengine.py</name>
+      <exists>-1</exists>
+      <size>4458</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>suspengine.py</filename>
+    </datafile>
+    <datafile>
+      <name>server.py</name>
+      <exists>-1</exists>
+      <size>37</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>server.py</filename>
+    </datafile>
   </datafiles>
   <NewExtensions/>
   <sounds name="sound">

@@ -159,7 +159,7 @@
 //snd_player_select = sound_add(working_directory+"\playerselection.mp3", 1, false)
 //sound_play(snd_player_select)
 
-global.online = true
+//global.online = true &lt;--- changed to clicking on the multiplayer option on the globe
 
 global.resetplaymaker = true //resets initial strategy array
 

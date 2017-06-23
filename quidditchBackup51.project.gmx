@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="455" name="datafiles">
-    <datafiles number="455" name="player_heads">
+  <datafiles number="457" name="datafiles">
+    <datafiles number="457" name="player_heads">
       <datafile>
         <name>spr_player1_head_strip8.png</name>
         <exists>-1</exists>
@@ -1281,7 +1281,7 @@
         <filename>spr_player75_head_strip8.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="players">
+    <datafiles number="457" name="players">
       <datafile>
         <name>player1.png</name>
         <exists>-1</exists>
@@ -2558,7 +2558,7 @@
         <filename>player75.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="shirts">
+    <datafiles number="457" name="shirts">
       <datafile>
         <name>shirt1.png</name>
         <exists>-1</exists>
@@ -3835,7 +3835,7 @@
         <filename>shirt16.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="logos">
+    <datafiles number="457" name="logos">
       <datafile>
         <name>logo1.png</name>
         <exists>-1</exists>
@@ -4160,7 +4160,7 @@
         <filename>logo19.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="logos_secondary">
+    <datafiles number="457" name="logos_secondary">
       <datafile>
         <name>logosecondary1.png</name>
         <exists>-1</exists>
@@ -4485,7 +4485,7 @@
         <filename>logosecondary19.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="455" name="data">
+    <datafiles number="457" name="data">
       <datafile>
         <name>defpresets.txt</name>
         <exists>-1</exists>
@@ -4504,6 +4504,40 @@
         <filename>defpresets.txt</filename>
       </datafile>
     </datafiles>
+    <datafile>
+      <name>suspengine.py</name>
+      <exists>-1</exists>
+      <size>4458</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>suspengine.py</filename>
+    </datafile>
+    <datafile>
+      <name>server.py</name>
+      <exists>-1</exists>
+      <size>37</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>server.py</filename>
+    </datafile>
   </datafiles>
   <NewExtensions/>
   <sounds name="sound">
@@ -4570,6 +4604,9 @@
     <sound>sound\snd_ohh</sound>
   </sounds>
   <sprites name="sprites">
+    <sprites name="Create Lobby">
+      <sprite>sprites\spr_createlobby</sprite>
+    </sprites>
     <sprites name="interface">
       <sprite>sprites\spr_strategy_glow</sprite>
       <sprite>sprites\spr_button_online</sprite>
@@ -5000,6 +5037,15 @@
     <path>paths\pth_bounce</path>
   </paths>
   <scripts name="scripts">
+    <scripts name="suspendee">
+      <script>scripts\network_disconnect.gml</script>
+      <script>scripts\network_server.gml</script>
+      <script>scripts\network_listen.gml</script>
+      <script>scripts\network_handle.gml</script>
+      <script>scripts\network_emit.gml</script>
+      <script>scripts\network_init.gml</script>
+      <script>scripts\scr_auth.gml</script>
+    </scripts>
     <scripts name="sounds">
       <script>scripts\scr_bludger_sound.gml</script>
       <script>scripts\scr_immunity_sound.gml</script>
@@ -5184,6 +5230,7 @@
       <object>objects\obj_how_to_play</object>
       <object>objects\obj_playmaker</object>
       <object>objects\obj_advanced_tab</object>
+      <object>objects\obj_simulate_button</object>
       <object>objects\obj_back_tab</object>
       <object>objects\obj_extrabutton</object>
       <object>objects\obj_statsbutton</object>
@@ -5224,8 +5271,9 @@
       <object>objects\obj_other_client</object>
       <object>objects\obj_1v1test</object>
       <object>objects\obj_join_lobby</object>
+      <object>objects\obj_create_lobby</object>
       <object>objects\obj_onlineplay</object>
-      <object>objects\obj_simulate_button</object>
+      <object>objects\obj_network</object>
     </objects>
     <objects name="legacy">
       <object>objects\obj_replayscreen</object>
@@ -5322,9 +5370,10 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
-    <room>rooms\rm_lobby</room>
-    <room>rooms\rm_online_lobby</room>
     <room>rooms\rm_lobby_search</room>
+    <room>rooms\rm_lobby</room>
+    <room>rooms\rm_host</room>
+    <room>rooms\rm_online_lobby</room>
     <room>rooms\rm_tutorial</room>
     <room>rooms\rm_card_test</room>
     <room>rooms\rm_test</room>

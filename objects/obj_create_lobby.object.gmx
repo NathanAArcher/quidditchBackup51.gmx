@@ -131,7 +131,7 @@ dsmap[? "msgid"] = 2;
 network_emit("auth",dsmap);
 
 ds_map_destroy(dsmap);
-room_goto(rm_host);
+room_goto(rm_online_options);
 </string>
           </argument>
         </arguments>

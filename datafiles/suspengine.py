@@ -90,7 +90,7 @@ def handleclient(c,addr):
         stuff = []
         try:
             data = data.decode('utf-8')
-        
+            print(data)
             if not limit:
                 data = prev[str(c)] + data
                 stuff = data.split(splitter)

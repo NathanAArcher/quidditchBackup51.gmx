@@ -6,7 +6,7 @@
   <depth>-100</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
-  <maskName>spr_buttonmask3</maskName>
+  <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="6" enumb="11">
       <action>
@@ -125,7 +125,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(rm_host);
+            <string>var dsmap = ds_map_create();
+dsmap[? "id"] = obj_network.whoami;
+dsmap[? "msgid"] = 2;
+network_emit("auth",dsmap);
+
+ds_map_destroy(dsmap);
+room_goto(rm_host);
 </string>
           </argument>
         </arguments>

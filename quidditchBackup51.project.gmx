@@ -4604,6 +4604,9 @@
     <sound>sound\snd_ohh</sound>
   </sounds>
   <sprites name="sprites">
+    <sprites name="Create Lobby">
+      <sprite>sprites\spr_createlobby</sprite>
+    </sprites>
     <sprites name="interface">
       <sprite>sprites\spr_strategy_glow</sprite>
       <sprite>sprites\spr_button_online</sprite>
@@ -5041,6 +5044,7 @@
       <script>scripts\network_handle.gml</script>
       <script>scripts\network_emit.gml</script>
       <script>scripts\network_init.gml</script>
+      <script>scripts\scr_receive.gml</script>
     </scripts>
     <scripts name="sounds">
       <script>scripts\scr_bludger_sound.gml</script>
@@ -5267,7 +5271,9 @@
       <object>objects\obj_other_client</object>
       <object>objects\obj_1v1test</object>
       <object>objects\obj_join_lobby</object>
+      <object>objects\obj_create_lobby</object>
       <object>objects\obj_onlineplay</object>
+      <object>objects\obj_network</object>
     </objects>
     <objects name="legacy">
       <object>objects\obj_replayscreen</object>
@@ -5366,6 +5372,7 @@
     <room>rooms\rm_menu</room>
     <room>rooms\rm_lobby_search</room>
     <room>rooms\rm_lobby</room>
+    <room>rooms\rm_host</room>
     <room>rooms\rm_online_lobby</room>
     <room>rooms\rm_tutorial</room>
     <room>rooms\rm_card_test</room>

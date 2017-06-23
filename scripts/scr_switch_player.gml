@@ -3,6 +3,14 @@
 //if argument1 == 2, team 2 (obj_player2_test and obj_player_dummy)
     playerObject = self
     teammateObject = self
+    with(obj_player_test){
+        playerObject = obj_player_test
+        teammateObject =  obj_player_teammate
+    }
+    with(obj_player2_test){
+        playerObject = obj_player2_test
+        teammateObject = obj_player_dummy
+    }
 
 //if(argument0 == 1){
     playerObject = obj_player_test //set default values

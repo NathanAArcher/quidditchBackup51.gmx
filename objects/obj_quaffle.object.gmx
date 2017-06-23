@@ -6845,6 +6845,58 @@ exit
       </action>
       <action>
         <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>speed</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>.3</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>speed</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>424</id>
         <kind>2</kind>
         <userelative>0</userelative>
@@ -7961,16 +8013,18 @@ with instance_create(x, y, obj_exclam){
 }
 
 if(bounce != 1){
-    other.throw_leway = 10
+    other.throw_leway = 15
     scr_set_quaffle_destination(mouse_x+random(2*(global.var_radius))-global.var_radius,mouse_y, 3+(global.throw))
     sprite_index = spr_ball
     image_index = image_index
     image_speed = 0
     initialspeed = destinationspeed
     move_towards_point(destinationx, destinationy, destinationspeed)
+    roll = -1
     bounce = 1
     bouncespeed = speed
     slow_down = true
+    sound_play(snd_quaffle_block)
     thoughts = thoughts + "kick to mouse"
 }
 </string>
@@ -12125,6 +12179,11 @@ if global.debugmode{
     draw_set_halign(fa_center)
     draw_text(x, y+16, thoughts)
     draw_text(x, y, global.possession)
+    if(bounce != 0){
+        draw_text(x, y+32, "bounce: " + string(bounce))
+        draw_text(x, y+48, "roll: " + string(roll))
+        draw_text(x, y-32, "speed: " + string(speed))
+    }
 }
 </string>
           </argument>

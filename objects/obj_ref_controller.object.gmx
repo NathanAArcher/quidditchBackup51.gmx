@@ -29,8 +29,6 @@
 //display_set_gui_maximise(2, 2, 0, 0);
 moveX = 0
 moveY = 0
-x = 0
-y = 0
 
 if global.losses+global.wins &lt; 8{
 scr_random_name(global.scheduleList[global.losses+global.wins])
@@ -2920,21 +2918,15 @@ draw_set_valign(fa_top)
 //draw_text_with_outline(400, 0, global.team2_score, fnt_scoreboard, global.team2_color, c_yellow)
 draw_text_with_outline(936, 0, global.team1_score, fnt_scoreboard, global.team1_color, c_yellow)
 //draw_text(200, 0, global.possession)
-    
-}*/
-
-if room == rm_tutorial_alt and instance_exists(obj_tutorial_alt){
-    if(obj_tutorial_alt.speechactivated){
-        exit
     }
-}
+}*/
 
 if room == rm_test or room == rm_alt or room == rm_tutorial_alt{
     //draw_text(x+320, y+32, global.possession)
     draw_set_alpha(1)
-    draw_sprite(spr_hud, -1, 0, 400)
+    draw_sprite(spr_hud, -1, x, y+400)
     //draw_sprite_ext(spr_hud, -1, x, y+400+(global.fovadjustment*480/640), 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0, c_white, 1)
-    draw_sprite(spr_powerup, global.powerup, x+264, x+400+22)
+    draw_sprite(spr_powerup, global.powerup, x+264, y+400+22)
     //draw_sprite(spr_onsnitch, global.team1onseeker, x, y+400)
     if room == rm_alt{ //causes tutorial error if in tutorial!
         if global.team1onseeker = 1{
@@ -3015,10 +3007,10 @@ if room == rm_test or room == rm_alt or room == rm_tutorial_alt{
         //draw_text_transformed(x+636, y+428+(global.fovadjustment*480/640), string(global.minutes) + ":" + string(global.seconds), 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0)
     }
     draw_set_font(fnt_hud)
-    draw_text(x+320, y+404, "POWER UP")
+    draw_text(x+320, view_yview+404, "POWER UP")
     //draw_text_transformed(x+320, view_yview+404+(global.fovadjustment*480/640), "POWER UP", 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0)
     draw_set_halign(fa_left)
-    draw_text(x+324, y+432, global.playername + " (SPACE/CTRL to switch players)")
+    draw_text(x+324, view_yview+432, global.playername + " (Press SPACE and CTRL to switch between players)")
     //draw_text_transformed(x+324, view_yview+432+(global.fovadjustment*480/640), global.playername, 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0)
     
     if instance_exists(obj_player_test){

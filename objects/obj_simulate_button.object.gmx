@@ -150,78 +150,99 @@ for(i = 0; i &lt; 7; i+= 1){ //fill initial list with empty spaces
 //fills bench with random players
 
 i = 0
-for(q = 1; q &lt; 3; q += 1){
-    chaserCount = 0
-    keeperCount = 0
-    beaterCount = 0
-    seekerCount = 0
-    while(i &lt; q*7){
-        randomize()
-        self_id = irandom(global.player_max-1)
-        bench_id[i] = self_id
-        scr_players() //set stats (and POSITION to whatever is at self_id.
-                      //We want to generate a set of 7 players for each position
-        duplicate = false
-        for(k = 0; k &lt; i; k+= 1){
-            if(bench_id[i] == bench_id[k]){
-                duplicate = true
-            }
+while(i &lt; 14){
+    randomize()
+    self_id = irandom(global.player_max-1)
+    bench_id[i] = self_id
+    scr_players() //set stats (and POSITION to whatever is at self_id.
+                  //We want to generate a set of 7 players for each position
+    duplicate = false
+    for(k = 0; k &lt; i; k+= 1){
+        if(bench_id[i] == bench_id[k]){
+            duplicate = true
         }
-        if(duplicate == true){
-            continue
-        }
-        if(st_position == 1){
+    }
+    if(duplicate == true){
+        continue
+    }
+    if(st_position == 1){
+        if(chaserCount &lt; 6){
             if(chaserCount &lt; 3){
                 scr_add_client_list(chaserCount, self_id, 1) //adds to the client list, first 7 players will be played with on pitch
                 //first 3 slots should be chasers [0-2]
-                chaserCount += 1
-            }else{
-                //i -= 1;
-                continue;
             }
+            chaserCount += 1
+        }else{
+            //i -= 1;
+            continue;
         }
-        if(st_position == 2){
+    }
+    if(st_position == 2){
+        if(keeperCount &lt; 2){
             if(keeperCount &lt; 1){
                 scr_add_client_list(keeperCount+3, self_id, 1) //adds to the client list, first 7 players will be played with on pitch
                 //4th slot should be keeper [3]
-                keeperCount += 1
-            }else{
-                //i -= 1;
-                continue;
             }
+            keeperCount += 1
+        }else{
+            //i -= 1;
+            continue;
         }
-        if(st_position == 3){
+    }
+    if(st_position == 3){
+        if(beaterCount &lt; 4){
             if(beaterCount &lt; 2){
                 scr_add_client_list(beaterCount+4, self_id, 1) //adds to the client list, first 7 players will be played with on pitch
                 //5th and 6th slot should be beaers [4-5]
-                beaterCount += 1
-            }else{
-                //i -= 1;
-                continue;
             }
+            beaterCount += 1
+        }else{
+            //i -= 1;
+            continue;
         }
-        if(st_position == 4){
-            if(seekerCount &lt; 1){
+    }
+    if(st_position == 4){
+        if(seekerCount &lt; 2){
+            if(beaterCount &lt; 2){
                 scr_add_client_list(seekerCount+6, self_id, 1) //adds to the client list, first 7 players will be played with on pitch
                 //7th slot should be seeker [6]
-                seekerCount += 1
+            }
+            seekerCount += 1
+        }else{
+            //i -= 1;
+            continue;
+        }
+    }
+    //draw_sprite_ext(sprite_head, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8)
+    //bench_sprites[i] = scr_load_smallheads(irandom(global.player_max))
+    scr_load_smallheads(self_id) //sets sprite head to self_id
+    //bench_sprites[i] = sprite_add(working_directory+"\player_heads\spr_player"+string(self_id+1)+"_head_strip8.png", 8, true, false, 16, 24)
+    //bench_sprites[i] = sprite_add(working_directory+"\player_heads\spr_player"+string(irandom(self_id)+1)+"_head_strip8.png", 8, true, false, 16, 24)
+    bench_sprites[i] = sprite_head
+    //bench_sprites[i] = scr_load_smallheads(5)
+    skin_array[i] = scr_getskin(-1)
+    bench_color[i] = choose(global.team1_color, global.team2_color) //depending on wins/losses should have more of team1 color
+    /*if(irandom(5) == 1 or global.wins+global.losses == 0){
+        bench_color[i] = make_color_rgb(irandom(255), irandom(255), irandom(255))
+    }else{
+        if global.losses &gt; 0 and global.wins &gt; 0{
+            if random(1) &gt; (global.wins/(global.wins+global.losses)){
+                bench_color[i] = global.team2_color
             }else{
-                //i -= 1;
-                continue;
+                bench_color[i] = global.team1_color
             }
         }
-        //draw_sprite_ext(sprite_head, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8)
-        //bench_sprites[i] = scr_load_smallheads(irandom(global.player_max))
-        scr_load_smallheads(self_id) //sets sprite head to self_id
-        //bench_sprites[i] = sprite_add(working_directory+"\player_heads\spr_player"+string(self_id+1)+"_head_strip8.png", 8, true, false, 16, 24)
-        //bench_sprites[i] = sprite_add(working_directory+"\player_heads\spr_player"+string(irandom(self_id)+1)+"_head_strip8.png", 8, true, false, 16, 24)
-        bench_sprites[i] = sprite_head
-        //bench_sprites[i] = scr_load_smallheads(5)
-        skin_array[i] = scr_getskin(-1)
-        bench_color[i] = choose(global.team1_color, global.team2_color) //depending on wins/losses should have more of team1 color
+        if global.wins == 0{
+            bench_color[i] = make_color_rgb(irandom(255), irandom(255), irandom(255))
+        }
         
-        i += 1
-    }
+    }*/
+    
+    /*if(irandom(12)-1 &gt; global.wins){
+        skin_array[i] = -1 //draw blank space
+        bench_id[i] = -1
+    }*/
+    i += 1
 }
 
 for(i = 0; i &lt; 7; i += 1){

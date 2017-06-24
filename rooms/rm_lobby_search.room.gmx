@@ -54,6 +54,8 @@
     <instance objName="obj_prevbutton" x="64" y="416" name="inst_3AAA5993" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_lobby_list" x="320" y="96" name="inst_E20CFC98" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_join_lobby" x="512" y="352" name="inst_C1ED0F6A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_create_lobby" x="288" y="416" name="inst_FFAC902C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_network" x="128" y="256" name="inst_6EBCB9A8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

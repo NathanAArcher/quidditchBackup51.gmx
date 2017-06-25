@@ -201,7 +201,7 @@ for(q = 1; q &lt; 3; q += 1){
             }
         }
         if(st_position == 4){
-            if(seekerCount &lt; 1){
+            if(seekerCount &lt; 1) and beaterCount == 2 and chaserCount == 3 and keeperCount == 1{ //to prevent putting a seeker in wrong point in array
                 scr_add_client_list(seekerCount+6, self_id, 1) //adds to the client list, first 7 players will be played with on pitch
                 //7th slot should be seeker [6]
                 seekerCount += 1

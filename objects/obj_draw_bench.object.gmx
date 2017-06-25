@@ -215,7 +215,47 @@ logosecondary = sprite_add(working_directory+"\logos_secondary\logosecondary"+st
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>front1 = sprite_add(working_directory+"\players\player"+string(obj_controller.charray[0, 0]+1)+".png", 0, true, false, 108, 128)
+            <string>//to save on compile time.
+
+front1 = spr_card_placeholder
+front2 = spr_card_placeholder
+front3 = spr_card_placeholder
+front4 = spr_card_placeholder
+front5 = spr_card_placeholder
+middle6 = spr_card_placeholder
+middle7 = spr_card_placeholder
+middle8 = spr_card_placeholder
+middle9 = spr_card_placeholder
+back10 = spr_card_placeholder
+
+if global.playeroption == 7{
+
+back11 = spr_card_placeholder
+back12 = spr_card_placeholder
+back13 = spr_card_placeholder
+back14 = spr_card_placeholder
+}
+
+frontshirt1 = spr_card_placeholder_shirt
+frontshirt2 = spr_card_placeholder_shirt
+frontshirt3 = spr_card_placeholder_shirt
+frontshirt4 = spr_card_placeholder_shirt
+frontshirt5 = spr_card_placeholder_shirt
+middleshirt6 = spr_card_placeholder_shirt
+middleshirt7 = spr_card_placeholder_shirt
+middleshirt8 = spr_card_placeholder_shirt
+middleshirt9 = spr_card_placeholder_shirt
+backshirt10 = spr_card_placeholder_shirt
+
+if global.playeroption == 7{
+backshirt11 = spr_card_placeholder_shirt
+backshirt12 = spr_card_placeholder_shirt
+backshirt13 = spr_card_placeholder_shirt
+backshirt14 = spr_card_placeholder_shirt
+
+}
+
+/*front1 = sprite_add(working_directory+"\players\player"+string(obj_controller.charray[0, 0]+1)+".png", 0, true, false, 108, 128)
 front2 = sprite_add(working_directory+"\players\player"+string(obj_controller.charray[1, 0]+1)+".png", 0, true, false, 108, 128)
 front3 = sprite_add(working_directory+"\players\player"+string(obj_controller.charray[2, 0]+1)+".png", 0, true, false, 108, 128)
 front4 = sprite_add(working_directory+"\players\player"+string(obj_controller.charray[3, 0]+1)+".png", 0, true, false, 108, 128)
@@ -251,7 +291,7 @@ backshirt12 = sprite_add(working_directory+"\shirts\shirt"+string(obj_controller
 backshirt13 = sprite_add(working_directory+"\shirts\shirt"+string(obj_controller.charray[12, 0]+1)+".png", 0, true, false, 108, 128)
 backshirt14 = sprite_add(working_directory+"\shirts\shirt"+string(obj_controller.charray[13, 0]+1)+".png", 0, true, false, 108, 128)
 
-}
+}*/
 
 logo = sprite_add(working_directory+"\logos\logo"+string(global.team1_logo+1)+".png", 0, true, false, 84, 64)
 logosecondary = sprite_add(working_directory+"\logos_secondary\logosecondary"+string(global.team1_logo+1)+".png", 0, true, false, 84, 64)
@@ -321,31 +361,14 @@ draw_text_with_double_outline(288, 8, "Dashboard", fnt_title, c_red, c_black, c_
 for(i = 0; i &lt; 2; i += 1)
 {
     if i == 1{
-    playercolor = c_white
-    //Draw the behind it so it looks good
-    /*draw_sprite_outline(back10, 1, 100+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-    if global.playeroption == 7{
-        draw_sprite_outline(back11, 1, 172+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-        draw_sprite_outline(back12, 1, 244+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-        draw_sprite_outline(back13, 1, 316+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-        draw_sprite_outline(back14, 1, 388+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-    }*/
+        playercolor = c_white
     }else{
-    playercolor = c_black
+        playercolor = c_black
     }
     
     if i == 0{
-        //draw_background(bgr_bench_shadow, 64, 280)
         draw_background(bgr_bench, 64, 200) //200
     }
-    /*
-    draw_sprite_outline(back10, 1, 100+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-    if global.playeroption == 7{
-        draw_sprite_outline(back11, 1, 172+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-        draw_sprite_outline(back12, 1, 244+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-        draw_sprite_outline(back13, 1, 316+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-        draw_sprite_outline(back14, 1, 388+28-(shadowx*(i)), 213+4-(shadowy*(i)), .4, .4, 0)
-    }*/
     
     //draw the shadow behind the sprite, if i &gt; 0, it will draw the shadow. If i == 0, will draw the player in full color
     

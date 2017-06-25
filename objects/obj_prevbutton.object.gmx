@@ -861,7 +861,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sound_loop(snd_song_character)
+            <string>sound_stop(snd_choose_character)
+sound_stop(snd_song_character)
+sound_loop(snd_song_character)
 </string>
           </argument>
         </arguments>

@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>locked1 = c_white
+            <string>//this is the object used to draw players when a player clicks on the "stats" button in dashboard or the binder in the menu
+
+locked1 = c_white
 locked2 = c_white
 locked3 = c_white
 locked4 = c_white
@@ -87,7 +89,7 @@ if st_position == 4{
     txt_position = "S"
 }
 
-othersprite1 = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
+/*othersprite1 = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
 othersprite2 = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
 othersprite3 = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
 othersprite4 = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
@@ -95,9 +97,23 @@ othersprite5 = sprite_add(working_directory+"\players\player1.png", 0, true, fal
 othersprite6 = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
 othersprite7 = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
 othersprite8 = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
-cardsprite = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)
+cardsprite = sprite_add(working_directory+"\players\player1.png", 0, true, false, 108, 128)*/
 
-if self_id-3 &gt; 0{
+//to save on compile time
+
+othersprite1 = spr_card_placeholder
+othersprite2 = spr_card_placeholder
+othersprite3 = spr_card_placeholder
+othersprite4 = spr_card_placeholder
+othersprite5 = spr_card_placeholder
+othersprite6 = spr_card_placeholder
+othersprite7 = spr_card_placeholder
+othersprite8 = spr_card_placeholder
+cardsprite = spr_card
+
+//uncomment the following for full images to appear
+
+/*if self_id-3 &gt; 0{
     othersprite1 = sprite_add(working_directory+"\players\player"+string(self_id-3)+".png", 0, true, false, 108, 128)
     if obj_controller.lockedlist[self_id-3-1] == true{
         locked1 = c_black
@@ -175,7 +191,7 @@ if self_id+4 &lt;= global.player_max{
         locked8 = c_black
     }
 }
-
+*/
 </string>
           </argument>
         </arguments>
@@ -207,7 +223,9 @@ locked6 = c_white
 locked7 = c_white
 locked8 = c_white
 
-if self_id-3 &gt; 0{
+//the following is commented out to save on compile time
+
+/*if self_id-3 &gt; 0{
     othersprite1 = sprite_add(working_directory+"\players\player"+string(self_id-3)+".png", 0, true, false, 108, 128)
     if obj_controller.lockedlist[self_id-3-1] == true{
         locked1 = c_black
@@ -284,7 +302,7 @@ if self_id+4 &lt;= global.player_max{
     if obj_controller.lockedlist[self_id+global.player_max+4-1] == true{
         locked8 = c_black
     }
-}
+}*/
 
 scr_bios()
 

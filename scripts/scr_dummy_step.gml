@@ -15,10 +15,12 @@ if(abs((prev_direction+360) - (twoback_direction+360)) < 90) and (abs((direction
     draw_direction = (prev_direction + twoback_direction + direction)/3*/
     draw_direction = direction
     draw_direction = (twoback_direction + prev_direction*2 + direction*3)/6 //makes motion look more fluid
-    if(blocking == true){
-        if(instance_exists(obj_bludger)){
-            move_towards_point(obj_bludger.x, obj_bludger.y-12, 0) //just to change direction; should be overriden later after draw_direction is established
-            draw_direction = direction;
+    if(instance_exists(obj_player2_test)){
+        if(blocking == true) and (obj_player2_test.x != x or obj_player2_test.y != y){
+            if(instance_exists(obj_bludger)){
+                move_towards_point(obj_bludger.x, obj_bludger.y-12, 0) //just to change direction; should be overriden later after draw_direction is established
+                draw_direction = direction;
+            }
         }
     }
 }

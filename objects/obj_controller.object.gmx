@@ -85,13 +85,13 @@ global.team1_color = c_white
 global.team1_color_secondary = c_black
 global.team2_color = c_white
 global.team2_color_secondary = c_black
-global.player_max = 0
+global.player_max = 75
 global.logo_max = 0
 //execute code:
 
-while file_exists(working_directory+"\players\player"+string(global.player_max+1)+".png"){
+/*while file_exists(working_directory+"\players\player"+string(global.player_max+1)+".png"){
     global.player_max += 1
-}
+}*/
 while file_exists(working_directory+"\logos\logo"+string(global.logo_max+1)+".png"){
     global.logo_max += 1
 }
@@ -150,11 +150,13 @@ global.pitchflipped = false
 global.fullrandom = false
 global.online = false
 global.movementTest = false
+global.presetindex = 0
 global.multiplayer_mode = 0
 global.multi_search_filter_gamemode = -1
 global.multi_search_filter_threedmode = -1
 global.multi_search_filter_aim_assist = -1
 global.multi_search_filter_player_count = -1
+global.arraydebug = false
 
 </string>
           </argument>
@@ -1123,7 +1125,37 @@ global.winLossList[global.wins+global.losses-1] = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if room == rm_menu{
+            <string>if global.task == 7{
+    //sleep(100)
+    //show_message("You've completed the tutorial. You can now move on to play a pickup game, or start a whole team of your own in League Play.")
+    global.task = 0
+    with(obj_how_to_play){
+        sprite_index = spr_rulebook    
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//legacy
+
+if room == rm_menu{
     global.wins = 0
     global.losses = 0
 }
@@ -1153,6 +1185,9 @@ if (room == rm_starters or room == rm_starters_alt) and global.resetplaymaker ==
     global.resetplaymaker = false
     instance_create(144, 288, obj_benchgen)
 }
+
+//array should be [chaser, chaser, chaser, keeper, beater, beater, seeker] for 7 players
+//array should be [chaser, chaser, keeper, beater, seeker] for 5 players
 
 if (room == rm_starters or rm_starters_alt) and instance_exists(obj_benchgen){ //obj_benchgen draws the spots at the very beginning, if if benchgen is still present, create players
 for(i = 0; i &lt; 14; i += 1){ //should check empty cells for 10+ for 5 player mode. We should be fine : )
@@ -1283,7 +1318,7 @@ for(i = 0; i &lt; 14; i += 1){ //should check empty cells for 10+ for 5 player m
 
 if room == rm_playmaker or room == rm_playmaker_alt{
     with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
-    instance_destroy()
+        instance_destroy()
     }
 for(i = 0; i &lt; 7; i += 1){
     if charray[i, 11] == 1 {
@@ -1302,22 +1337,6 @@ for(i = 0; i &lt; 7; i += 1){
                 global.chasers = 3
                 continue
                 }
-            /*
-            if global.chasers == 3 {
-                action_create_object_motion(obj_player_position, 32, 96, charray[i,0], 0)
-                global.chasers = 4
-                continue
-                }
-            if global.chasers == 4 {
-                action_create_object_motion(obj_player_position, 96, 96, charray[i,0], 0)
-                global.chasers = 5
-                continue
-                }
-            if global.chasers == 5 {
-                action_create_object_motion(obj_player_position, 160, 96, charray[i,0], 0)
-                global.chasers = 6
-                continue
-                }*/
         }
     if charray[i, 11] == 2{
         if global.keepers &lt; 1{
@@ -1325,7 +1344,7 @@ for(i = 0; i &lt; 7; i += 1){
                 action_create_object_motion(obj_player_position, obj_controller.charray[3, 1]*xmodifier+xintercept, obj_controller.charray[3, 2]*ymodifier, charray[i,0], 0)
             }
             if global.playeroption == 5{
-            action_create_object_motion(obj_player_position, obj_controller.charray[2, 1]*xmodifier+xintercept, obj_controller.charray[2, 2]*ymodifier, charray[i,0], 0)
+                action_create_object_motion(obj_player_position, obj_controller.charray[2, 1]*xmodifier+xintercept, obj_controller.charray[2, 2]*ymodifier, charray[i,0], 0)
             }
             global.keepers = 1
             continue
@@ -1346,12 +1365,12 @@ for(i = 0; i &lt; 7; i += 1){
                 }
                 global.beaters = 1
                 continue
-                }
+            }
             if global.beaters == 1 and global.playeroption == 7{
                 action_create_object_motion(obj_player_position, obj_controller.charray[5, 1]*xmodifier+xintercept, obj_controller.charray[5, 2]*ymodifier, charray[i,0], 0)
                 global.beaters = 2
                 continue
-                }
+            }
             /*if global.beaters == 2{
                 action_create_object_motion(obj_player_position, 64, 128, charray[i,0], 0)
                 global.beaters = 3
@@ -1384,92 +1403,95 @@ for(i = 0; i &lt; 7; i += 1){
 }
 
 if room == rm_broomsup{
+    with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
+        instance_destroy()
+    }
     for(i = 0; i &lt; global.playeroption; i += 1){
-    if charray[i, 11] == 1 {
-            if global.chasers == 0 {
-                action_create_object_motion(obj_player_position, obj_controller.charray[0, 12], obj_baby_opp.y-16, charray[i, 0], 0)
-                global.chasers = 1
-                continue
-                }
-            if global.chasers == 1 {
-                action_create_object_motion(obj_player_position, obj_controller.charray[1, 12], obj_baby_opp.y-16, charray[i, 0], 0)
-                global.chasers = 2
-                continue
-                }
-            if global.chasers == 2 and global.playeroption == 7{
-                action_create_object_motion(obj_player_position, obj_controller.charray[2, 12], obj_baby_opp.y-16, charray[i, 0], 0)
-                global.chasers = 3
-                continue
-                }
-            /*
-            if global.chasers == 3 {
-                action_create_object_motion(obj_player_position, 32, 96, charray[i,0], 0)
-                global.chasers = 4
-                continue
-                }
-            if global.chasers == 4 {
-                action_create_object_motion(obj_player_position, 96, 96, charray[i,0], 0)
-                global.chasers = 5
-                continue
-                }
-            if global.chasers == 5 {
-                action_create_object_motion(obj_player_position, 160, 96, charray[i,0], 0)
-                global.chasers = 6
-                continue
-                }*/
-        }
-    if charray[i, 11] == 2{
-        if global.keepers &lt; 1{
-            if global.playeroption == 7{
-                action_create_object_motion(obj_player_position, obj_controller.charray[3, 12], obj_baby_opp.y-16, charray[i,0], 0)
-            }
-            if global.playeroption == 5{
-                action_create_object_motion(obj_player_position, obj_controller.charray[2, 12], obj_baby_opp.y-16, charray[i,0], 0)
-            }
-            global.keepers = 1
-            continue
-        }else{/*
-            action_create_object_motion(obj_player_position, 224, 96, charray[i,0], 0)
-            global.keepers = 2
-            continue*/
-            }
-        }
-    if charray[i, 11] == 3{
-            if global.beaters == 0{
-                if global.playeroption == 7{
-                    action_create_object_motion(obj_player_position, obj_controller.charray[4, 12], obj_baby_opp.y-16, charray[i,0], 0)
+        if charray[i, 11] == 1 {
+                if global.chasers == 0 {
+                    action_create_object_motion(obj_player_position, obj_controller.charray[0, 12], obj_baby_opp.y-16, charray[i, 0], 0)
+                    global.chasers = 1
+                    continue
                     }
-                if global.playeroption == 5{
+                if global.chasers == 1 {
+                    action_create_object_motion(obj_player_position, obj_controller.charray[1, 12], obj_baby_opp.y-16, charray[i, 0], 0)
+                    global.chasers = 2
+                    continue
+                    }
+                if global.chasers == 2 and global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[2, 12], obj_baby_opp.y-16, charray[i, 0], 0)
+                    global.chasers = 3
+                    continue
+                    }
+                /*
+                if global.chasers == 3 {
+                    action_create_object_motion(obj_player_position, 32, 96, charray[i,0], 0)
+                    global.chasers = 4
+                    continue
+                    }
+                if global.chasers == 4 {
+                    action_create_object_motion(obj_player_position, 96, 96, charray[i,0], 0)
+                    global.chasers = 5
+                    continue
+                    }
+                if global.chasers == 5 {
+                    action_create_object_motion(obj_player_position, 160, 96, charray[i,0], 0)
+                    global.chasers = 6
+                    continue
+                    }*/
+            }
+        if charray[i, 11] == 2{
+            if global.keepers &lt; 1{
+                if global.playeroption == 7{
                     action_create_object_motion(obj_player_position, obj_controller.charray[3, 12], obj_baby_opp.y-16, charray[i,0], 0)
                 }
-                global.beaters = 1
-                continue
+                if global.playeroption == 5{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[2, 12], obj_baby_opp.y-16, charray[i,0], 0)
                 }
-            if global.beaters == 1 and global.playeroption == 7{
-                action_create_object_motion(obj_player_position, obj_controller.charray[5, 12], obj_baby_opp.y-16, charray[i,0], 0)
-                global.beaters = 2
+                global.keepers = 1
                 continue
-                }/*
-            if global.beaters == 2{
-                action_create_object_motion(obj_player_position, 64, 128, charray[i,0], 0)
-                global.beaters = 3
-                continue
+            }else{/*
+                action_create_object_motion(obj_player_position, 224, 96, charray[i,0], 0)
+                global.keepers = 2
+                continue*/
                 }
-            if global.beaters == 3{
-                action_create_object_motion(obj_player_position, 128, 128, charray[i,0], 0)
-                global.beaters = 4
-                continue
-                }*/
             }
-    if charray[i, 11] == 4  {
-        if global.seekers &lt; 1{
-            action_create_object_motion(obj_player_position, 32, 368, charray[i,0], 0)
-            global.seekers = 1
-            continue
-        }else{/*
-            action_create_object_motion(obj_player_position, 192, 128, charray[i,0], 0)
-            global.seekers = 2
-            continue*/
+        if charray[i, 11] == 3{
+                if global.beaters == 0{
+                    if global.playeroption == 7{
+                        action_create_object_motion(obj_player_position, obj_controller.charray[4, 12], obj_baby_opp.y-16, charray[i,0], 0)
+                        }
+                    if global.playeroption == 5{
+                        action_create_object_motion(obj_player_position, obj_controller.charray[3, 12], obj_baby_opp.y-16, charray[i,0], 0)
+                    }
+                    global.beaters = 1
+                    continue
+                    }
+                if global.beaters == 1 and global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[5, 12], obj_baby_opp.y-16, charray[i,0], 0)
+                    global.beaters = 2
+                    continue
+                    }/*
+                if global.beaters == 2{
+                    action_create_object_motion(obj_player_position, 64, 128, charray[i,0], 0)
+                    global.beaters = 3
+                    continue
+                    }
+                if global.beaters == 3{
+                    action_create_object_motion(obj_player_position, 128, 128, charray[i,0], 0)
+                    global.beaters = 4
+                    continue
+                    }*/
+                }
+        if charray[i, 11] == 4  {
+            if global.seekers &lt; 1{
+                action_create_object_motion(obj_player_position, 32, 368, charray[i,0], 0)
+                global.seekers = 1
+                continue
+            }else{/*
+                action_create_object_motion(obj_player_position, 192, 128, charray[i,0], 0)
+                global.seekers = 2
+                continue*/
             }
         }
     } 
@@ -1492,146 +1514,135 @@ if room == rm_broomsup{
       
   
 if room == rm_broomsup_alt{
+    with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
+        instance_destroy()
+    }
     for(i = 0; i &lt; global.playeroption; i += 1){
-    if charray[i, 11] == 1 {
-            if global.chasers == 0 {
-                action_create_object_motion(obj_player_position, (obj_controller.charray[0, 12]-320)/2, ((((obj_controller.charray[0, 12]-320)/2)+160)*2-768)*-2.25, charray[i, 0], 0)
-                global.chasers = 1
-                continue
-                }
-            if global.chasers == 1 {
-                action_create_object_motion(obj_player_position, (obj_controller.charray[1, 12]-320)/2, ((((obj_controller.charray[1, 12]-320)/2)+160)*2-768)*-2.25, charray[i, 0], 0)
-                global.chasers = 2
-                continue
-                }
-            if global.chasers == 2 and global.playeroption == 7{
-                action_create_object_motion(obj_player_position, (obj_controller.charray[2, 12]-320)/2, ((((obj_controller.charray[2, 12]-320)/2)+160)*2-768)*-2.25, charray[i, 0], 0)
-                global.chasers = 3
-                continue
-                }
-            /*
-            if global.chasers == 3 {
-                action_create_object_motion(obj_player_position, 32, 96, charray[i,0], 0)
-                global.chasers = 4
-                continue
-                }
-            if global.chasers == 4 {
-                action_create_object_motion(obj_player_position, 96, 96, charray[i,0], 0)
-                global.chasers = 5
-                continue
-                }
-            if global.chasers == 5 {
-                action_create_object_motion(obj_player_position, 160, 96, charray[i,0], 0)
-                global.chasers = 6
-                continue
-                }*/
-        }
-    if charray[i, 11] == 2{
-        if global.keepers &lt; 1{
-            if global.playeroption == 7{
-                action_create_object_motion(obj_player_position, (obj_controller.charray[3, 12]-320)/2, ((((obj_controller.charray[3, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
-            }
-            if global.playeroption == 5{
-                action_create_object_motion(obj_player_position, (obj_controller.charray[2, 12]-320)/2, ((((obj_controller.charray[2, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
-            }
-            global.keepers = 1
-            continue
-        }else{/*
-            action_create_object_motion(obj_player_position, 224, 96, charray[i,0], 0)
-            global.keepers = 2
-            continue*/
-            }
-        }
-    if charray[i, 11] == 3{
-            if global.beaters == 0{
-                if global.playeroption == 7{
-                    action_create_object_motion(obj_player_position, (obj_controller.charray[4, 12]-320)/2, ((((obj_controller.charray[4, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
+        if charray[i, 11] == 1 {
+                if global.chasers == 0 {
+                    action_create_object_motion(obj_player_position, (obj_controller.charray[0, 12]-320)/2, ((((obj_controller.charray[0, 12]-320)/2)+160)*2-768)*-2.25, charray[i, 0], 0)
+                    global.chasers = 1
+                    continue
                     }
-                if global.playeroption == 5{
+                if global.chasers == 1 {
+                    action_create_object_motion(obj_player_position, (obj_controller.charray[1, 12]-320)/2, ((((obj_controller.charray[1, 12]-320)/2)+160)*2-768)*-2.25, charray[i, 0], 0)
+                    global.chasers = 2
+                    continue
+                    }
+                if global.chasers == 2 and global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, (obj_controller.charray[2, 12]-320)/2, ((((obj_controller.charray[2, 12]-320)/2)+160)*2-768)*-2.25, charray[i, 0], 0)
+                    global.chasers = 3
+                    continue
+                    }
+            }
+        if charray[i, 11] == 2{
+            if global.keepers &lt; 1{
+                if global.playeroption == 7{
                     action_create_object_motion(obj_player_position, (obj_controller.charray[3, 12]-320)/2, ((((obj_controller.charray[3, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
                 }
-                global.beaters = 1
-                continue
+                if global.playeroption == 5{
+                    action_create_object_motion(obj_player_position, (obj_controller.charray[2, 12]-320)/2, ((((obj_controller.charray[2, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
                 }
-            if global.beaters == 1 and global.playeroption == 7{
-                action_create_object_motion(obj_player_position, (obj_controller.charray[5, 12]-320)/2, ((((obj_controller.charray[5, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
-                global.beaters = 2
+                global.keepers = 1
                 continue
-                }/*
-            if global.beaters == 2{
-                action_create_object_motion(obj_player_position, 64, 128, charray[i,0], 0)
-                global.beaters = 3
-                continue
+            }else{/*
+                action_create_object_motion(obj_player_position, 224, 96, charray[i,0], 0)
+                global.keepers = 2
+                continue*/
                 }
-            if global.beaters == 3{
-                action_create_object_motion(obj_player_position, 128, 128, charray[i,0], 0)
-                global.beaters = 4
-                continue
-                }*/
             }
-    if charray[i, 11] == 4  {
-        if global.seekers &lt; 1{
-            action_create_object_motion(obj_player_position, 32, 368, charray[i,0], 0)
-            global.seekers = 1
-            continue
-        }else{/*
-            action_create_object_motion(obj_player_position, 192, 128, charray[i,0], 0)
-            global.seekers = 2
-            continue*/
+        if charray[i, 11] == 3{
+                if global.beaters == 0{
+                    if global.playeroption == 7{
+                        action_create_object_motion(obj_player_position, (obj_controller.charray[4, 12]-320)/2, ((((obj_controller.charray[4, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
+                        }
+                    if global.playeroption == 5{
+                        action_create_object_motion(obj_player_position, (obj_controller.charray[3, 12]-320)/2, ((((obj_controller.charray[3, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
+                    }
+                    global.beaters = 1
+                    continue
+                    }
+                if global.beaters == 1 and global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, (obj_controller.charray[5, 12]-320)/2, ((((obj_controller.charray[5, 12]-320)/2)+160)*2-768)*-2.25, charray[i,0], 0)
+                    global.beaters = 2
+                    continue
+                    }/*
+                if global.beaters == 2{
+                    action_create_object_motion(obj_player_position, 64, 128, charray[i,0], 0)
+                    global.beaters = 3
+                    continue
+                    }
+                if global.beaters == 3{
+                    action_create_object_motion(obj_player_position, 128, 128, charray[i,0], 0)
+                    global.beaters = 4
+                    continue
+                    }*/
+                }
+        if charray[i, 11] == 4  {
+            if global.seekers &lt; 1{
+                action_create_object_motion(obj_player_position, 32, 368, charray[i,0], 0)
+                global.seekers = 1
+                continue
+            }else{/*
+                action_create_object_motion(obj_player_position, 192, 128, charray[i,0], 0)
+                global.seekers = 2
+                continue*/
             }
         }
     } 
 }
 
 if room == rm_offense or room == rm_offense_alt{
-
+    with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
+        instance_destroy()
+    }
     for(i = 0; i &lt; 7; i += 1){
-    if charray[i, 11] == 1 {
-            if global.chasers == 0 {
-                action_create_object_motion(obj_player_position, obj_controller.charray[0, 13]*xmodifier+xintercept, obj_controller.charray[0, 14]*ymodifier, charray[i, 0], 0)
-                global.chasers = 1
-                continue
-                }
-            if global.chasers == 1 {
-                action_create_object_motion(obj_player_position, obj_controller.charray[1, 13]*xmodifier+xintercept, obj_controller.charray[1, 14]*ymodifier, charray[i, 0], 1)
-                global.chasers = 2
-                continue
-                }
-            if global.chasers == 2 and global.playeroption == 7{
-                action_create_object_motion(obj_player_position, obj_controller.charray[2, 13]*xmodifier+xintercept, obj_controller.charray[2, 14]*ymodifier, charray[i, 0], 2)
-                global.chasers = 3
-                continue
-                }
-        }
-    if charray[i, 11] == 2{
-        if global.keepers &lt; 1{
-            if global.playeroption == 7{
-                action_create_object_motion(obj_player_position, obj_controller.charray[3, 13]*xmodifier+xintercept, obj_controller.charray[3, 14]*ymodifier, charray[i,0], 3)
+        if charray[i, 11] == 1 {
+                if global.chasers == 0 {
+                    action_create_object_motion(obj_player_position, obj_controller.charray[0, 13]*xmodifier+xintercept, obj_controller.charray[0, 14]*ymodifier, charray[i, 0], 0)
+                    global.chasers = 1
+                    continue
+                    }
+                if global.chasers == 1 {
+                    action_create_object_motion(obj_player_position, obj_controller.charray[1, 13]*xmodifier+xintercept, obj_controller.charray[1, 14]*ymodifier, charray[i, 0], 1)
+                    global.chasers = 2
+                    continue
+                    }
+                if global.chasers == 2 and global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[2, 13]*xmodifier+xintercept, obj_controller.charray[2, 14]*ymodifier, charray[i, 0], 2)
+                    global.chasers = 3
+                    continue
+                    }
             }
-            if global.playeroption == 5{
-                action_create_object_motion(obj_player_position, obj_controller.charray[2, 13]*xmodifier+xintercept, obj_controller.charray[2, 14]*ymodifier, charray[i,0], 2)
-            }
-            global.keepers = 1
-            continue
-            }
-        }
-    if charray[i, 11] == 3{
-            if global.beaters == 0{
+        if charray[i, 11] == 2{
+            if global.keepers &lt; 1{
                 if global.playeroption == 7{
-                    action_create_object_motion(obj_player_position, obj_controller.charray[4, 13]*xmodifier+xintercept, obj_controller.charray[4, 14]*ymodifier, charray[i,0], 4)
+                    action_create_object_motion(obj_player_position, obj_controller.charray[3, 13]*xmodifier+xintercept, obj_controller.charray[3, 14]*ymodifier, charray[i, 0], 3)
                 }
                 if global.playeroption == 5{
-                    action_create_object_motion(obj_player_position, obj_controller.charray[3, 13]*xmodifier+xintercept, obj_controller.charray[3, 14]*ymodifier, charray[i,0], 3)
+                    action_create_object_motion(obj_player_position, obj_controller.charray[2, 13]*xmodifier+xintercept, obj_controller.charray[2, 14]*ymodifier, charray[i, 0], 2)
+                }
+                global.keepers = 1
+                continue
+            }
+        }
+        if charray[i, 11] == 3{
+            if global.beaters == 0{
+                if global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[4, 13]*xmodifier+xintercept, obj_controller.charray[4, 14]*ymodifier, charray[i, 0], 4)
+                }
+                if global.playeroption == 5{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[3, 13]*xmodifier+xintercept, obj_controller.charray[3, 14]*ymodifier, charray[i, 0], 3)
                 }
                 global.beaters = 1
                 continue
-                }
+            }
             if global.beaters == 1 and global.playeroption == 7{
-                    action_create_object_motion(obj_player_position, obj_controller.charray[5, 13]*xmodifier+xintercept, obj_controller.charray[5, 14]*ymodifier, charray[i,0], 5)
+                    action_create_object_motion(obj_player_position, obj_controller.charray[5, 13]*xmodifier+xintercept, obj_controller.charray[5, 14]*ymodifier, charray[i, 0], 5)
                 global.beaters = 2
                 continue
-                }
             }
+        }
     } 
 }
 
@@ -1654,11 +1665,11 @@ action_create_object_motion(obj_player_position, 192, 128, charray[13,0], 0)
 if room == rm_pitch or room == rm_alt{
     if global.movementTest{
         if(global.host == 1){
-            action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[0,0], 0)
+            action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[0, 0], 0)
             instance_create( obj_baby_hoop.x-32, obj_baby_hoop.y-16, obj_client_player2);
             instance_create(obj_baby_opp.x+32, obj_baby_opp.y-16, obj_player);
         }else{
-            action_create_object_motion(obj_player2_test, obj_baby_hoop.x-32, obj_baby_hoop.y-16, charray[0,0], 0)
+            action_create_object_motion(obj_player2_test, obj_baby_hoop.x-32, obj_baby_hoop.y-16, charray[0, 0], 0)
             instance_create(obj_baby_opp.x+32, obj_baby_opp.y-16, obj_client_player1);
             instance_create(obj_baby_hoop.x-32, obj_baby_hoop.y-16, obj_player);
         }
@@ -1667,10 +1678,10 @@ if room == rm_pitch or room == rm_alt{
     if global.playeroption == 7{
         for (p = 0; p &lt; 6; p += 1){
             if charray[p, 16] == 0{
-                action_create_object_motion(obj_player_teammate, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p,0], 0)
+                action_create_object_motion(obj_player_teammate, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p, 0], 0)
             }else{
                 if instance_exists(obj_player_test) == false{
-                    action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p,0], 0)
+                    action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p, 0], 0)
                 }
             }
         }
@@ -1678,10 +1689,10 @@ if room == rm_pitch or room == rm_alt{
     if global.playeroption == 5{
         for (p = 0; p &lt; 4; p += 1){
             if charray[p, 16] == 0{
-                action_create_object_motion(obj_player_teammate, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p,0], 0)
+                action_create_object_motion(obj_player_teammate, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p, 0], 0)
             }else{
                 if instance_exists(obj_player_test) == false{
-                    action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p,0], 0)
+                    action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p, 0], 0)
                 }
             }
         }    
@@ -1690,6 +1701,20 @@ if room == rm_pitch or room == rm_alt{
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>425</id>
+        <kind>4</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
       <action>
         <libid>1</libid>
@@ -1707,12 +1732,399 @@ if room == rm_pitch or room == rm_alt{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.task == 7{
-    //sleep(100)
-    //show_message("You've completed the tutorial. You can now move on to play a pickup game, or start a whole team of your own in League Play.")
-    global.task = 0
-    with(obj_how_to_play){
-        sprite_index = spr_rulebook    
+            <string>if room == rm_menu{
+    global.wins = 0
+    global.losses = 0
+}
+
+global.chasers = 0
+global.keepers = 0
+global.beaters = 0
+global.seekers = 0
+
+if global.threedmode == true{
+    xmodifier = .5 //multiplied by this factor to accurately place players at positions. The strategy-setting room is half the area of the pitch, hence the locations are multiplied by 1/2
+    ymodifier = .5
+    xintercept = -160
+}else{
+    xmodifier = 1
+    ymodifier = 1
+    xintercept = 0
+}
+
+if (room == rm_starters or room == rm_starters_alt) and global.resetplaymaker == true{
+    with obj_player_position{
+    instance_destroy()
+    }
+    with obj_bench_slot{
+    instance_destroy()
+    }
+    global.resetplaymaker = false
+    instance_create(144, 288, obj_benchgen)
+}
+
+//array should be [chaser, chaser, chaser, keeper, beater, beater, seeker] for 7 players
+//array should be [chaser, chaser, keeper, beater, seeker] for 5 players
+
+if (room == rm_starters or rm_starters_alt) and instance_exists(obj_benchgen){ //obj_benchgen draws the spots at the very beginning, if if benchgen is still present, create players
+for(i = 0; i &lt; 14; i += 1){ //should check empty cells for 10+ for 5 player mode. We should be fine : )
+    if charray[i, 11] == 1 {
+            if global.chasers == 0 {
+                action_create_object_motion(obj_player_position, obj_benchgen.x, obj_benchgen.y, charray[i, 0], 0)
+                global.chasers = 1
+                continue
+                }
+            if global.chasers == 1 {
+                action_create_object_motion(obj_player_position, obj_benchgen.x+64, obj_benchgen.y, charray[i, 0], 0)
+                global.chasers = 2
+                continue
+                }
+            if global.chasers == 2 {
+                if global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_benchgen.x+128, obj_benchgen.y, charray[i, 0], 0)
+                }
+                if global.playeroption == 5{
+                    action_create_object_motion(obj_player_position, obj_benchgen.x, obj_benchgen.y+64, charray[i,0], 0)
+                }
+                global.chasers = 3
+                continue
+                }
+            if global.chasers == 3 {
+                if global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_benchgen.x, obj_benchgen.y+64, charray[i,0], 0)
+                }
+                if global.playeroption == 5{
+                    action_create_object_motion(obj_player_position, obj_benchgen.x+64, obj_benchgen.y+64, charray[i,0], 0)
+                }
+                global.chasers = 4
+                continue
+                }
+            if global.chasers == 4 {
+                action_create_object_motion(obj_player_position, obj_benchgen.x+64, obj_benchgen.y+64, charray[i,0], 0)
+                global.chasers = 5
+                continue
+                }
+            if global.chasers == 5 {
+                action_create_object_motion(obj_player_position, obj_benchgen.x+128, obj_benchgen.y+64, charray[i,0], 0)
+                global.chasers = 6
+                continue
+                }
+        }
+    if charray[i, 11] == 2{
+        if global.playeroption == 7{
+            if global.keepers &lt; 1{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+192, obj_benchgen.y, charray[i,0], 0)
+                global.keepers = 1
+                continue
+            }else{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+192, obj_benchgen.y+64, charray[i,0], 0)
+                global.keepers = 2
+                continue
+                }
+            }
+        if global.playeroption == 5{
+            if global.keepers &lt; 1{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+128, obj_benchgen.y, charray[i,0], 0)
+                global.keepers = 1
+                continue
+            }else{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+128, obj_benchgen.y+64, charray[i,0], 0)
+                global.keepers = 2
+                continue
+                }        
+            }
+        }
+    if charray[i, 11] == 3{
+            if global.beaters == 0{
+                if global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_benchgen.x+256, obj_benchgen.y, charray[i,0], 0)
+                }
+                if global.playeroption == 5{
+                    action_create_object_motion(obj_player_position, obj_benchgen.x+192, obj_benchgen.y, charray[i,0], 0)
+                }
+                global.beaters = 1
+                continue
+                }
+            if global.beaters == 1{
+                if global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_benchgen.x+320, obj_benchgen.y, charray[i,0], 0)
+                }
+                if global.playeroption == 5{
+                    action_create_object_motion(obj_player_position, obj_benchgen.x+192, obj_benchgen.y+64, charray[i,0], 0)
+                }
+                global.beaters = 2
+                continue
+                }
+            if global.beaters == 2{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+256, obj_benchgen.y+64, charray[i,0], 0)
+                global.beaters = 3
+                continue
+                }
+            if global.beaters == 3{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+320, obj_benchgen.y+64, charray[i,0], 0)
+                global.beaters = 4
+                continue
+                }
+            }
+    if charray[i, 11] == 4  {
+        if global.playeroption == 7{
+            if global.seekers &lt; 1{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+384, obj_benchgen.y, charray[i,0], 0)
+                global.seekers = 1
+                continue
+            }else{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+384, obj_benchgen.y+64, charray[i,0], 0)
+                global.seekers = 2
+                continue
+                }
+            }
+        if global.playeroption == 5{
+                    if global.seekers &lt; 1{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+256, obj_benchgen.y, charray[i,0], 0)
+                global.seekers = 1
+                continue
+            }else{
+                action_create_object_motion(obj_player_position, obj_benchgen.x+256, obj_benchgen.y+64, charray[i,0], 0)
+                global.seekers = 2
+                continue
+                }
+            }
+        }
+    } 
+}
+
+if room == rm_playmaker or room == rm_playmaker_alt{
+    with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
+        instance_destroy()
+    }
+    //generate chasers
+    for(i = 0; i &lt; global.playeroption; i += 1){
+        with (action_create_object_motion(obj_player_position, obj_controller.charray[i, 1]*xmodifier+xintercept, obj_controller.charray[i, 2]*ymodifier, charray[i, 0], 0)){
+            //array_index = instance_number(obj_player_position)-1;
+        }
+    }
+    /*action_create_object_motion(obj_player_position, obj_controller.charray[0, 1]*xmodifier+xintercept, obj_controller.charray[0, 2]*ymodifier, charray[i, 0], 0) //place in relative position based on where it would be on the actual pitch
+    action_create_object_motion(obj_player_position, obj_controller.charray[1, 1]*xmodifier+xintercept, obj_controller.charray[1, 2]*ymodifier, charray[i, 0], 0)
+    //generate chaser if 7 players
+    if global.chasers == 2 and global.playeroption == 7{
+        action_create_object_motion(obj_player_position, obj_controller.charray[2, 1]*xmodifier+xintercept, obj_controller.charray[2, 2]*ymodifier, charray[i, 0], 0)
+    }
+    //generate keeper if 7 players
+    if global.playeroption == 7{
+        action_create_object_motion(obj_player_position, obj_controller.charray[3, 1]*xmodifier+xintercept, obj_controller.charray[3, 2]*ymodifier, charray[i,0], 0)
+    }
+    //generate keeper or beater
+    if global.playeroption == 5{
+        action_create_object_motion(obj_player_position, obj_controller.charray[2, 1]*xmodifier+xintercept, obj_controller.charray[2, 2]*ymodifier, charray[i,0], 0)
+    }
+    //generate keeper or beater
+    if global.playeroption == 7{
+        action_create_object_motion(obj_player_position, obj_controller.charray[4, 1]*xmodifier+xintercept, obj_controller.charray[4, 2]*ymodifier, charray[i,0], 0)
+    }
+    //generate seeker
+    if global.playeroption == 5{
+        action_create_object_motion(obj_player_position, obj_controller.charray[3, 1]*xmodifier+xintercept, obj_controller.charray[3, 2]*ymodifier, charray[i,0], 0)
+    }
+    //generate second beater
+    if global.beaters == 1 and global.playeroption == 7{
+        action_create_object_motion(obj_player_position, obj_controller.charray[5, 1]*xmodifier+xintercept, obj_controller.charray[5, 2]*ymodifier, charray[i,0], 0)
+    }
+    if global.playeroption == 7{
+        action_create_object_motion(obj_player_position, obj_controller.charray[6, 1]*xmodifier+xintercept, obj_controller.charray[6, 2]*ymodifier, charray[i,0], 0)
+    }
+    if global.playeroption == 5{
+        action_create_object_motion(obj_player_position, obj_controller.charray[5, 1]*xmodifier+xintercept, obj_controller.charray[5, 2]*ymodifier, charray[i,0], 0)
+    }*/ 
+}
+
+if room == rm_broomsup{
+    with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
+        instance_destroy()
+    }
+    /*for(i = 0; i &lt; global.playeroption; i += 1){
+        with (action_create_object_motion(obj_player_position, obj_controller.charray[i, 12], obj_baby_opp.y-16, charray[i, 0], 0)){
+            array_index = instance_number(obj_player_position)-1;
+        }
+    }*/
+    for(i = 0; i &lt; global.playeroption; i += 1){
+        if charray[i, 11] == 1 {
+                if global.chasers == 0 {
+                    action_create_object_motion(obj_player_position, obj_controller.charray[0, 12], obj_baby_opp.y-16, charray[i, 0], 0)
+                    global.chasers = 1
+                    continue
+                    }
+                if global.chasers == 1 {
+                    action_create_object_motion(obj_player_position, obj_controller.charray[1, 12], obj_baby_opp.y-16, charray[i, 0], 0)
+                    global.chasers = 2
+                    continue
+                    }
+                if global.chasers == 2 and global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[2, 12], obj_baby_opp.y-16, charray[i, 0], 0)
+                    global.chasers = 3
+                    continue
+                    }
+                /*
+                if global.chasers == 3 {
+                    action_create_object_motion(obj_player_position, 32, 96, charray[i,0], 0)
+                    global.chasers = 4
+                    continue
+                    }
+                if global.chasers == 4 {
+                    action_create_object_motion(obj_player_position, 96, 96, charray[i,0], 0)
+                    global.chasers = 5
+                    continue
+                    }
+                if global.chasers == 5 {
+                    action_create_object_motion(obj_player_position, 160, 96, charray[i,0], 0)
+                    global.chasers = 6
+                    continue
+                    }*/
+            }
+        if charray[i, 11] == 2{
+            if global.keepers &lt; 1{
+                if global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[3, 12], obj_baby_opp.y-16, charray[i,0], 0)
+                }
+                if global.playeroption == 5{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[2, 12], obj_baby_opp.y-16, charray[i,0], 0)
+                }
+                global.keepers = 1
+                continue
+            }else{/*
+                action_create_object_motion(obj_player_position, 224, 96, charray[i,0], 0)
+                global.keepers = 2
+                continue*/
+                }
+            }
+        if charray[i, 11] == 3{
+                if global.beaters == 0{
+                    if global.playeroption == 7{
+                        action_create_object_motion(obj_player_position, obj_controller.charray[4, 12], obj_baby_opp.y-16, charray[i,0], 0)
+                        }
+                    if global.playeroption == 5{
+                        action_create_object_motion(obj_player_position, obj_controller.charray[3, 12], obj_baby_opp.y-16, charray[i,0], 0)
+                    }
+                    global.beaters = 1
+                    continue
+                    }
+                if global.beaters == 1 and global.playeroption == 7{
+                    action_create_object_motion(obj_player_position, obj_controller.charray[5, 12], obj_baby_opp.y-16, charray[i,0], 0)
+                    global.beaters = 2
+                    continue
+                    }/*
+                if global.beaters == 2{
+                    action_create_object_motion(obj_player_position, 64, 128, charray[i,0], 0)
+                    global.beaters = 3
+                    continue
+                    }
+                if global.beaters == 3{
+                    action_create_object_motion(obj_player_position, 128, 128, charray[i,0], 0)
+                    global.beaters = 4
+                    continue
+                    }*/
+                }
+        if charray[i, 11] == 4  {
+            if global.seekers &lt; 1{
+                action_create_object_motion(obj_player_position, 32, 368, charray[i,0], 0)
+                global.seekers = 1
+                continue
+            }else{/*
+                action_create_object_motion(obj_player_position, 192, 128, charray[i,0], 0)
+                global.seekers = 2
+                continue*/
+            }
+        }
+    } 
+}
+
+   /*(obj_controller.charray[0, 12]-320)/2 =((768-(y)*(240/540))/2)-160
+      obj_controller.charray[0, 12] =((768-(y)*(240/540))/2)
+      obj_controller.charray[0, 12]*2*540/240 =768*540/240-(y)
+      obj_controller.charray[0, 12]*2*540/240(-768*(540/240)) = -y
+      y =  obj_controller.charray[0, 12]*4.5 -1728))*/ //SHOW YOUR WORK  ((obj_controller.charray[0, 12]*(-120/540)+768.7))/2,
+      
+      /*(obj_controller.charray[0, 12]-320)/2 =((768-(y)*(240/540))/2)-160
+       ((obj_controller.charray[0, 12]-320)/2)+160 =((768-(y)*(240/540))/2)
+       (((obj_controller.charray[0, 12[-320)/2)+160)*2 = (768-(y)*240/540)
+        (((obj_controller.charray[0, 12[-320)/2)+160)*2-768 = -y*240/540
+         ((((obj_controller.charray[0, 12[-320)/2)+160)*2-768)*540/240 = -y
+         y = ((((obj_controller.charray[0, 12]-320)/2)+160)*2-768)*-2.25*/
+       
+      
+      
+  
+if room == rm_broomsup_alt{
+    with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
+        instance_destroy()
+    }
+    for(i = 0; i &lt; global.playeroption; i += 1){
+        with (action_create_object_motion(obj_player_position, (obj_controller.charray[i, 12]-320)/2, ((((obj_controller.charray[i, 12]-320)/2)+160)*2-768)*-2.25, charray[i, 0], 0)){
+            //array_index = instance_number(obj_player_position)-1;
+        }
+    }
+}
+
+if room == rm_offense or room == rm_offense_alt{
+    with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
+        instance_destroy()
+    }
+    for(i = 0; i &lt; global.playeroption; i += 1){
+        with (action_create_object_motion(obj_player_position, obj_controller.charray[i, 13]*xmodifier+xintercept, obj_controller.charray[i, 14]*ymodifier, charray[i, 0], 0)){
+            //array_index = instance_number(obj_player_position)-1;
+        }
+    }
+}
+
+/*action_create_object_motion(obj_player_position, obj_baby_opp.x, obj_baby_opp.y-16, charray[0,0], 0)
+action_create_object_motion(obj_player_position, obj_smedium_opp.x, obj_baby_opp.y-16, charray[1,0], 0)
+action_create_object_motion(obj_player_position, obj_center_opp.x, obj_baby_opp.y-16, charray[2,0], 0) //keeper
+action_create_object_motion(obj_player_position, obj_center_opp.x, obj_baby_opp.y-128, charray[3,0], 0)
+action_create_object_motion(obj_player_position, obj_smedium_opp.x+16, obj_baby_opp.y-48, charray[4,0], 0)
+action_create_object_motion(obj_player_position, obj_baby_opp.x-16, obj_baby_opp.y-48, charray[5,0], 0)
+action_create_object_motion(obj_player_position, 32, 368, charray[6,0], 0)
+action_create_object_motion(obj_player_position, 32, 96, charray[7,0], 0)
+action_create_object_motion(obj_player_position, 96, 96, charray[8,0], 0)
+action_create_object_motion(obj_player_position, 160, 96, charray[9,0], 0)
+action_create_object_motion(obj_player_position, 224, 96, charray[10,0], 0)
+action_create_object_motion(obj_player_position, 64, 128, charray[11,0], 0)
+action_create_object_motion(obj_player_position, 128, 128, charray[12,0], 0)
+action_create_object_motion(obj_player_position, 192, 128, charray[13,0], 0)
+*/
+
+if room == rm_pitch or room == rm_alt{
+    if global.movementTest{
+        if(global.host == 1){
+            action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[0, 0], 0)
+            instance_create( obj_baby_hoop.x-32, obj_baby_hoop.y-16, obj_client_player2);
+            instance_create(obj_baby_opp.x+32, obj_baby_opp.y-16, obj_player);
+        }else{
+            action_create_object_motion(obj_player2_test, obj_baby_hoop.x-32, obj_baby_hoop.y-16, charray[0, 0], 0)
+            instance_create(obj_baby_opp.x+32, obj_baby_opp.y-16, obj_client_player1);
+            instance_create(obj_baby_hoop.x-32, obj_baby_hoop.y-16, obj_player);
+        }
+        exit
+    }
+    if global.playeroption == 7{
+        for (p = 0; p &lt; 6; p += 1){
+            if charray[p, 16] == 0{
+                action_create_object_motion(obj_player_teammate, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p, 0], 0)
+            }else{
+                if instance_exists(obj_player_test) == false{
+                    action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p, 0], 0)
+                }
+            }
+        }
+    }
+    if global.playeroption == 5{
+        for (p = 0; p &lt; 4; p += 1){
+            if charray[p, 16] == 0{
+                action_create_object_motion(obj_player_teammate, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p, 0], 0)
+            }else{
+                if instance_exists(obj_player_test) == false{
+                    action_create_object_motion(obj_player_test, obj_baby_opp.x+32, obj_baby_opp.y-16, charray[p, 0], 0)
+                }
+            }
+        }    
     }
 }
 </string>
@@ -1765,7 +2177,8 @@ if room == rm_pitch or room == rm_alt{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white)
+            <string>draw_set_alpha(1)
+draw_set_color(c_white)
 draw_rectangle(0, 0, 256, 24, false)
 draw_set_color(c_black)
 draw_set_font(fnt_card)
@@ -1777,6 +2190,57 @@ if(room == rm_alt) and global.host == 1{
     draw_rectangle(view_xview[0], view_yview[0], view_xview[0]+128, view_yview[0]+24, false)
     draw_text(view_xview[0], view_yview[0], "Host")
 }
+
+//*xmodifier+xintercept, obj_controller.(charray[0, 2]*ymodifier
+
+if(global.arraydebug){
+    draw_set_alpha(0.33)
+    draw_set_color(c_gray)
+    draw_rectangle(0, 0, 640, 480, false)
+    for(i = 0; i &lt; 14; i += 1){
+        draw_set_alpha(0.5)
+        if(charray[i, 1] != -1){
+            if(charray[i, 11] == 1){
+                draw_set_color(c_gray)
+            }
+            if(charray[i, 11] == 2){
+                draw_set_color(c_green)
+            }
+            if(charray[i, 11] == 3){
+                draw_set_color(c_black)
+            }
+            if(charray[i, 11] == 4){
+                draw_set_color(c_yellow)
+            }
+            draw_set_halign(fa_center)
+            draw_set_valign(fa_middle)
+            draw_rectangle(96+(32*i), 32, 128+(32*i), 64, false)
+            draw_set_color(c_white)
+            draw_set_alpha(0.33)
+            draw_text(112+(32*i), 48, charray[i, 0])
+            draw_set_color(c_blue)
+            draw_rectangle(((charray[i, 1])*xmodifier+xintercept)-16, ((charray[i, 2])*ymodifier)-16, ((charray[i, 1])*xmodifier+xintercept)+16, ((charray[i, 2])*ymodifier)+16, false)
+            draw_set_color(c_white)
+            draw_text(((charray[i, 1])*xmodifier+xintercept), ((charray[i, 2])*ymodifier), string(charray[i, 0]))
+            draw_set_color(c_red)
+            draw_rectangle(((charray[i, 13])*xmodifier+xintercept)-16, ((charray[i, 14])*ymodifier)-16, ((charray[i, 13])*xmodifier+xintercept)+16, ((charray[i, 14])*ymodifier)+16, false)
+            draw_set_color(c_white)
+            draw_set_halign(fa_center)
+            draw_set_valign(fa_middle)
+            draw_text(((charray[i, 13])*xmodifier+xintercept), ((charray[i, 14])*ymodifier), string(charray[i, 0]))
+        }else{
+            draw_set_color(c_blue)
+            draw_rectangle(32, 32, 64, 64, false)
+            draw_set_color(c_white)
+            draw_set_halign(fa_center)
+            draw_set_valign(fa_middle)
+            draw_text(48, 48, string(charray[i, 0]))            
+        }
+    }
+}
+
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)
 </string>
           </argument>
         </arguments>

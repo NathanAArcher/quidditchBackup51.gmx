@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>added = false
+            <string>array_index = instance_number(obj_player_position)-1;
+
+added = false
 originx = x
 originy = y
 locktomouse = false
@@ -105,19 +107,19 @@ if room == rm_playmaker_alt{
 
 direction = 0
 
-if st_position = 1{
+if st_position == 1{
 //global.chasers += 1
 position_id = global.chasers
 }
-if st_position = 2{
+if st_position == 2{
 //global.keepers += 1
 position_id = global.keepers
 }
-if st_position = 3{
+if st_position == 3{
 //global.beaters += 1
 position_id = global.beaters
 }
-if st_position = 4{
+if st_position == 4{
 //global.seekers += 1
 position_id = global.seekers
 strategy = 2

@@ -57,8 +57,11 @@ ch_hair = 0
 scr_players()
 scr_bios()
 
-cardsprite = sprite_add(working_directory+"\players\player"+string(self_id+1)+".png", 0, true, false, 108, 128)
-cardshirt = sprite_add(working_directory+"\shirts\shirt"+string(self_id+1)+".png", 0, true, false, 108, 128)
+cardsprite = spr_card_placeholder
+cardshirt = spr_card_placeholder_shirt
+
+//cardsprite = sprite_add(working_directory+"\players\player"+string(self_id+1)+".png", 0, true, false, 108, 128)
+//cardshirt = sprite_add(working_directory+"\shirts\shirt"+string(self_id+1)+".png", 0, true, false, 108, 128)
 </string>
           </argument>
         </arguments>

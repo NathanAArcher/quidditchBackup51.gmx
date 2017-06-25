@@ -61,8 +61,11 @@ card_flag = -1;
 scr_players()
 scr_bios()
 
-cardsprite = sprite_add(working_directory+"\players\player"+string(self_id+1)+".png", 0, true, false, 108, 128)
-cardshirt = sprite_add(working_directory+"\shirts\shirt"+string(self_id+1)+".png", 0, true, false, 108, 128)
+//cardsprite = sprite_add(working_directory+"\players\player"+string(self_id+1)+".png", 0, true, false, 108, 128)
+//cardshirt = sprite_add(working_directory+"\shirts\shirt"+string(self_id+1)+".png", 0, true, false, 108, 128)
+
+cardsprite = spr_card_placeholder
+cardshirt = spr_card_placeholder_shirt
 
 scr_load_smallheads(self_id) //gets smallhead to draw on dangling player
 
@@ -4990,23 +4993,15 @@ draw_set_halign(fa_left)
 if flip == 0{
     texture_set_interpolation(true)
     draw_sprite_ext(spr_card, 0, x, y, .5, .5, 0, c_white, 1)
-    //draw_sprite_ext(spr_card, self_id+1, x, y, .5, .5, 0, c_white, 1)
-    //draw_sprite_ext(spr_card_shirt, self_id+1, x, y, .5, .5, 0, global.team1_color, 1)
     draw_sprite_ext(cardsprite, 0, x, y, .5, .5, 0, locked, 1)
-    //draw_sprite_sharpen(cardsprite, 0, x, y, .5, .5, 0, locked, 0.5)
     draw_sprite_ext(spr_cardflags, card_flag+1, x, y, .5, .5, 0, c_white, 1)
-    //draw_sprite_ext(cardshirt, 0, x, y, .5, .5, 0, global.team1_color, 1)
 }
     if flip != 0 and flip != 4 and flip != 5{
         if frame &lt; 15{
             draw_sprite_ext(spr_card_shadow, -1, x+4, y+4, .5+(frame/60), (.5+(frame/60))*(1-(frame/15)), 90, c_white, 1)
             draw_sprite_ext(spr_card, 0, x, y, (.5+(frame/60))*(1-(frame/15)), .5+(frame/60), 0, c_white, 1)
-            //draw_sprite_ext(spr_card, self_id+1, x, y,(.5+(frame/60))*(1-(frame/15)), .5+(frame/60), 0, c_white, 1)
-            //draw_sprite_ext(spr_card_shirt, self_id+1, x, y,(.5+(frame/60))*(1-(frame/15)), .5+(frame/60), 0, global.team1_color, 1)
             draw_sprite_ext(cardsprite, 0, x, y, (.5+(frame/60))*(1-(frame/15)), .5+(frame/60), 0, locked, 1)
-            //draw_sprite_sharpen(cardsprite, 0, x, y, (.5+(frame/60))*(1-(frame/15)), .5+(frame/60), 0, locked, 0.5)
             draw_sprite_ext(spr_cardflags, card_flag+1, x, y, (.5+(frame/60))*(1-(frame/15)), .5+(frame/60), 0, c_white, 1)
-            //draw_sprite_ext(cardshirt, 0, x, y, (.5+(frame/60))*(1-(frame/15)), .5+(frame/60), 0, global.team1_color, 1)
         }
         if frame == 15{
             draw_line(x, y+96, x, y-96)
@@ -5016,17 +5011,12 @@ if flip == 0{
             draw_sprite_ext(spr_stats, 0, x, y, (frame-14)/15, .5+(frame/60), 0, locked, 1)
             if frame &lt; 30{
                 draw_set_font(fnt_card)
-                //draw_text_transformed(x+(59-112)*((frame/60)+.5), y+(76-134)*((frame/60)+.5), txt_gender, .5+(frame/60), (frame-14)/15, 0)
-                //draw_text_transformed(x+(62-112)*((frame/60)+.5), y+(108-134)*((frame/60)+.5), txt_gender, .5+(frame/60), (frame-14)/15, 0)
-                //draw_text_transformed(x+(59-112)-((frame/60)+.5), y+(76-134)*((frame/60)+.5), txt_gender,  (frame-14)/15, .5+(frame/60), 0)
-                //draw_text_transformed(x+(62-112)-((frame/60)+.5), y+(108-134)*((frame/60)+.5), txt_position, (frame-14)/15, .5+(frame/60), 0)
                 draw_text_transformed(x+((59-112)*((frame-15)/15)), y+(76-134)*((frame/60)+.5), txt_gender,  (frame-15)/15, .5+(frame/60), 0)
                 draw_text_transformed(x+((62-112)*((frame-15)/15)), y+(108-134)*((frame/60)+.5), txt_position, (frame-15)/15, .5+(frame/60), 0)
                 draw_set_font(fnt_bio)
                 draw_text_ext_transformed(x+(79-112)*((frame-15)/15), y+(76-134)*((frame/60)+.5), str_bio, 9, 132, (frame-15)/15, .5+(frame/60), 0)
                 draw_set_font(fnt_title)
                 string_width_ext(ch_name,30*(.5+(frame/60)), 196*((frame-15)/15))
-                //draw_text_transformed_with_outline(x+(10-112)*((frame-14)/15), y+(12-134)*((frame/60)+.5), ch_name, fnt_title, c_blue, c_white,  (frame-14)/15,  .5+(frame/60))
                 draw_text_ext_transformed_with_outline(x+(10-112)*((frame-15)/15), y+(12-134)*((frame/60)+.5), ch_name, fnt_title, c_blue, c_white,  (frame-15)/15,  .5+(frame/60), 30, 196)
                 for(j = 0; j &lt; 7; j += 1){
                     for(i = 0; i &lt; 10; i += 1){
@@ -5166,12 +5156,6 @@ if flip == 0{
     }
 if flip &gt; 3{ //was == 5
     if(frame &lt;= 10){ //draw player dangling
-            //draw_sprite_ext(spr_card, 0, x, y, .25, .25, 0, c_white, 1)
-            //draw_sprite_ext(spr_cardflags, card_flag+1, x, y, .25, .25, 0, c_white, 1)
-            //draw_sprite_ext(spr_card, self_id+1, x, y, .25, .25, 0, c_white, 1)
-            //draw_sprite_ext(spr_card_shirt, self_id+1, x, y, .25, .25, 0, global.team1_color, 1)
-            //draw_sprite_ext(cardsprite, 0, x, y, .25, .25, 0, locked, 1)
-            //draw_sprite_ext(cardshirt, 0, x, y, .25, .25, 0, global.team1_color, 1)
             draw_sprite_ext(spr_player_dangle, -1, mouse_x+7, mouse_y+6, 1, 1, 0, c_white, 1)
             draw_sprite_ext(spr_player_dangle_shirt, -1, mouse_x+7, mouse_y+6, 1, 1, 0, global.team1_color, 1)
             if(self_id &gt;= 0 and self_id &lt;= 75){

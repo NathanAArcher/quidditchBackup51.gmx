@@ -253,6 +253,7 @@ if mouse_check_button_pressed(mb_right){
 if mouse_check_button_released(mb_left) and mouse_check_button(mb_right) == false{
     windup = 0
     catch = 0
+    ch_power = .5
     if(ch_ball == true and catch == 0 and scuffling == false and tackle == false){
         global.throw = st_throw*ch_power
         ch_ball = false

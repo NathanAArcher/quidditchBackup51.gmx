@@ -732,6 +732,12 @@ commandY = -1
 image_index += 1/4
 
 draw_direction = point_direction(x, y, obj_player_test.x, obj_player_test.y)
+
+if(obj_player_test.x &gt; x){
+    image_speed = 0;
+}else{
+    image_speed = 1/4;
+}
 </string>
           </argument>
         </arguments>
@@ -5706,6 +5712,8 @@ instance_create(2400+56*i, 2976, obj_zombie)
     move_towards_point(1152, 384, moving_speed)
 }*/
 
+image_speed = 1
+
 sprint = 0;
 
 if(commandX &lt; 1){ //if -1 or 0
@@ -10408,6 +10416,9 @@ ch_name = global.playername
 }
 
 scriptCount = 2
+
+global.team1_name = global.playername;
+global.team2_name = "Tutorial";
 </string>
           </argument>
         </arguments>

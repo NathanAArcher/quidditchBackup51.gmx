@@ -1,5 +1,6 @@
 //Sets player into array based on location on starter tab. Starters appear in next tab
 
+//sets into array [chaser, chaser, chaser, keeper, beater, beater, seeker]
 if global.playeroption == 7{
 
     for(i = 0; i < 7; i += 1){
@@ -16,6 +17,9 @@ if global.playeroption == 7{
         }
     }
 }
+
+
+//sets into array [chaser, chaser, keeper, beater, seeker]
 
 if global.playeroption == 5{
     for(i = 0; i < 5; i += 1){

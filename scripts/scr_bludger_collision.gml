@@ -156,6 +156,7 @@ if(st_position == 3) and (ch_ball == false){ //if beater that is blocking; block
                         ch_off_broom = true;
                     }
                 }
+                exit //prevents duplication of bludger
             }
         }
         if((argument0 == 2) and blocking){
@@ -173,6 +174,7 @@ if(st_position == 3) and (ch_ball == false){ //if beater that is blocking; block
                         ch_off_broom = true;
                     }
                 }
+                exit
             }
         }
     }

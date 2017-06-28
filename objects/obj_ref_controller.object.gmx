@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-100000</depth>
+  <depth>-1000001</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -3021,7 +3021,7 @@ if room == rm_test or room == rm_alt or room == rm_tutorial_alt{
     draw_text(x+324, y+432, global.playername + " (SPACE/CTRL to switch players)")
     //draw_text_transformed(x+324, view_yview+432+(global.fovadjustment*480/640), global.playername, 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0)
     
-    if instance_exists(obj_player_test){
+    if (instance_exists(obj_player_test) and global.online == false) or (global.online and global.host == 1){
         if obj_player_test.st_position == 1{
         draw_text(x+324, view_yview+432, obj_player_test.ch_name + " - Chaser")
         //draw_text_transformed(x+324, view_yview+432+(global.fovadjustment*480/640), obj_player_test.ch_name + " - Chaser", 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0)
@@ -3045,7 +3045,7 @@ if room == rm_test or room == rm_alt or room == rm_tutorial_alt{
         draw_set_color(c_green)
         draw_rectangle(x+560, y+456, x+560-(238-(obj_player_test.st_energy/(obj_player_test.st_stamina*100))*238), y+470, false)
     }
-    if instance_exists(obj_player2_test){
+    if (instance_exists(obj_player2_test) and global.online == false) or (global.online and global.host == 0){
         if obj_player2_test.st_position == 1{
         //draw_text(x+324, view_yview+432, obj_player2_test.ch_name + " - Chaser")
         draw_text_transformed(x+324, view_yview+432+(global.fovadjustment*480/640), obj_player2_test.ch_name + " - Chaser", 1+(global.fovadjustment/640), 1+(global.fovadjustment/480), 0)

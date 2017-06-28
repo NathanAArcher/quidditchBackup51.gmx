@@ -1,0 +1,8 @@
+off_preset1:
+chaser1, 1236, 544
+chaser2, 1174, 656
+chaser3, 1136, 669
+keeper1, 680, 480
+beater1, 1240, 480
+beater2, 1240, 608
+,end

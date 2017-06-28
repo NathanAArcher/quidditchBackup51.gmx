@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="456" name="datafiles">
-    <datafiles number="456" name="player_heads">
+  <datafiles number="462" name="datafiles">
+    <datafiles number="462" name="player_heads">
       <datafile>
         <name>spr_player1_head_strip8.png</name>
         <exists>-1</exists>
@@ -1281,7 +1281,7 @@
         <filename>spr_player75_head_strip8.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="456" name="logos">
+    <datafiles number="462" name="logos">
       <datafile>
         <name>logo1.png</name>
         <exists>-1</exists>
@@ -1606,7 +1606,7 @@
         <filename>logo19.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="456" name="logos_secondary">
+    <datafiles number="462" name="logos_secondary">
       <datafile>
         <name>logosecondary1.png</name>
         <exists>-1</exists>
@@ -1931,7 +1931,7 @@
         <filename>logosecondary19.png</filename>
       </datafile>
     </datafiles>
-    <datafiles number="456" name="data">
+    <datafiles number="462" name="data">
       <datafile>
         <name>defpresets1.txt</name>
         <exists>-1</exists>
@@ -1965,6 +1965,91 @@
           </Config>
         </ConfigOptions>
         <filename>offpresets1.txt</filename>
+      </datafile>
+      <datafile>
+        <name>defpresets2.txt</name>
+        <exists>-1</exists>
+        <size>175</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>defpresets2.txt</filename>
+      </datafile>
+      <datafile>
+        <name>offpresets2.txt</name>
+        <exists>-1</exists>
+        <size>137</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>offpresets2.txt</filename>
+      </datafile>
+      <datafile>
+        <name>offpresets3.txt</name>
+        <exists>-1</exists>
+        <size>137</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>offpresets3.txt</filename>
+      </datafile>
+      <datafile>
+        <name>defpresets3.txt</name>
+        <exists>-1</exists>
+        <size>176</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>defpresets3.txt</filename>
+      </datafile>
+      <datafile>
+        <name>savenames.txt</name>
+        <exists>-1</exists>
+        <size>0</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>savenames.txt</filename>
       </datafile>
     </datafiles>
   </datafiles>
@@ -2035,6 +2120,10 @@
   <sprites name="sprites">
     <sprites name="interface">
       <sprite>sprites\spr_strategy_glow</sprite>
+      <sprite>sprites\spr_brooms_up</sprite>
+      <sprite>sprites\spr_autocalc</sprite>
+      <sprite>sprites\spr_new_autocalc</sprite>
+      <sprite>sprites\spr_simgame</sprite>
       <sprite>sprites\spr_button_online</sprite>
       <sprite>sprites\spr_set_strategy</sprite>
       <sprite>sprites\spr_join_lobby_button</sprite>
@@ -2067,7 +2156,9 @@
       <sprite>sprites\spr_x</sprite>
       <sprite>sprites\spr_o</sprite>
       <sprite>sprites\spr_save</sprite>
+      <sprite>sprites\spr_save_beta</sprite>
       <sprite>sprites\spr_load</sprite>
+      <sprite>sprites\spr_load_beta</sprite>
       <sprite>sprites\spr_box</sprite>
       <sprite>sprites\spr_signinpencil</sprite>
       <sprite>sprites\spr_rulebook_glow</sprite>
@@ -2108,6 +2199,7 @@
     <sprite>sprites\spr_hitmarker</sprite>
     <sprite>sprites\spr_star_particle</sprite>
     <sprite>sprites\sprite305</sprite>
+    <sprite>sprites\spr_norm_hold_ball</sprite>
     <sprite>sprites\spr_player_waypoint</sprite>
     <sprite>sprites\spr_footsteps</sprite>
     <sprite>sprites\spr_schedulebox</sprite>
@@ -2165,10 +2257,7 @@
     <sprite>sprites\spr_add</sprite>
     <sprite>sprites\spr_back</sprite>
     <sprite>sprites\spr_quit</sprite>
-    <sprite>sprites\spr_brooms_up</sprite>
     <sprite>sprites\spr_todays_game</sprite>
-    <sprite>sprites\spr_autocalc</sprite>
-    <sprite>sprites\spr_simgame</sprite>
     <sprite>sprites\spr_game_options</sprite>
     <sprite>sprites\spr_how_to_play</sprite>
     <sprite>sprites\spr_purchase</sprite>
@@ -2486,8 +2575,17 @@
       <script>scripts\scr_movetext.gml</script>
     </scripts>
     <scripts name="data/player array scripts">
+      <scripts name="online data">
+        <script>scripts\scr_client_send_inputs.gml</script>
+        <script>scripts\scr_set_online_arrays.gml</script>
+        <script>scripts\scr_update_online_player_array.gml</script>
+        <script>scripts\scr_get_player_package.gml</script>
+        <script>scripts\scr_create_online_clone.gml</script>
+      </scripts>
       <script>scripts\scr_reset_controller_array.gml</script>
       <script>scripts\scr_set_charray.gml</script>
+      <script>scripts\scr_set_client_charray.gml</script>
+      <script>scripts\scr_set_default_strategy.gml</script>
       <script>scripts\scr_bios.gml</script>
       <script>scripts\scr_calculateBracket.gml</script>
       <script>scripts\scr_calculateSeeds.gml</script>
@@ -2502,8 +2600,6 @@
       <script>scripts\scr_getWeight.gml</script>
       <script>scripts\scr_players.gml</script>
       <script>scripts\scr_player_preset.gml</script>
-      <script>scripts\scr_set_client_charray.gml</script>
-      <script>scripts\scr_set_default_strategy.gml</script>
       <script>scripts\scr_random_name.gml</script>
       <script>scripts\scr_set_positions.gml</script>
       <script>scripts\scr_add_list.gml</script>
@@ -2515,20 +2611,22 @@
       <script>scripts\client_connect.gml</script>
       <script>scripts\scr_add_lobby.gml</script>
     </scripts>
+    <scripts name="gameplay">
+      <script>scripts\scr_any_players_have_quaffle.gml</script>
+      <script>scripts\ball_bounce.gml</script>
+      <script>scripts\scr_set_quaffle_destination.gml</script>
+      <script>scripts\scr_quaffle_failsafe.gml</script>
+      <script>scripts\scr_bludger_collision.gml</script>
+    </scripts>
     <script>scripts\scr_reference.gml</script>
     <script>scripts\scr_instance_nth_nearest.gml</script>
-    <script>scripts\ball_bounce.gml</script>
     <script>scripts\scr_flip_coordinate_x.gml</script>
     <script>scripts\scr_flip_coordinate_y.gml</script>
-    <script>scripts\scr_set_quaffle_destination.gml</script>
     <script>scripts\draw_sprite_outline.gml</script>
     <script>scripts\draw_sprite_outline_color.gml</script>
     <script>scripts\draw_sprite_sharpen.gml</script>
-    <script>scripts\scr_any_players_have_quaffle.gml</script>
-    <script>scripts\scr_quaffle_failsafe.gml</script>
     <script>scripts\scr_draw_self_out_of_bounds.gml</script>
     <script>scripts\scr_draw_ball_out_of_bounds.gml</script>
-    <script>scripts\scr_bludger_collision.gml</script>
     <script>scripts\scr_drawchar.gml</script>
     <script>scripts\scr_drawplayer.gml</script>
     <script>scripts\scr_draw_althoop.gml</script>
@@ -2638,6 +2736,7 @@
       <object>objects\obj_purchasebutton</object>
       <object>objects\obj_binder</object>
       <object>objects\obj_save</object>
+      <object>objects\obj_save_to_file</object>
       <object>objects\obj_donate</object>
       <object>objects\obj_feedback</object>
       <object>objects\obj_load</object>
@@ -2709,10 +2808,10 @@
       <object>objects\obj_stats_controller</object>
     </objects>
     <object>objects\obj_controller</object>
+    <object>objects\obj_ref_controller</object>
     <object>objects\obj_debug</object>
     <object>objects\obj_brooms_down</object>
     <object>objects\obj_footsteps</object>
-    <object>objects\obj_ref_controller</object>
     <object>objects\obj_broomsupcontrol</object>
     <object>objects\obj_prepitch</object>
     <object>objects\obj_postpitch</object>
@@ -2784,6 +2883,7 @@
     <object>objects\obj_player2_test</object>
     <object>objects\obj_player_dummy</object>
     <object>objects\obj_player_teammate</object>
+    <object>objects\obj_online_player</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
@@ -2828,7 +2928,8 @@
     <room>rooms\rm_stats</room>
     <room>rooms\room39</room>
   </rooms>
-  <constants number="3">
+  <constants number="4">
+    <constant name="PLAYER_INPUT">2</constant>
     <constant name="UPDATE_SPEED">3</constant>
     <constant name="MESSAGE_MOVE">1</constant>
     <constant name="MESSAGE_PLAYER_DATA">2</constant>

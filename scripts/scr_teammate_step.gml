@@ -5,7 +5,7 @@
 //Own keeper recover: 617
 //Opposing keeper recover: 684
 
-if(manfound = false and instance_exists(obj_player_dummy)){
+if(manfound == false and instance_exists(obj_player_dummy)){
     scr_find_man()
     manfound = true
 }

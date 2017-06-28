@@ -72,6 +72,25 @@ while(true){
             
         break;
         
+        case PLAYER_INPUT:
+        
+        //read inputs from player2
+        
+        var
+        client = buffer_read(buffer, buffer_u16);
+        for(i = 0; i < 2; i+= 1){ //should be i < 12
+            obj_controller.online_client_movement[i] = buffer_read(buffer, buffer_s16);
+        }
+        
+        with(obj_serverClient){
+            if(client_id != client_id_current){
+                network_send_raw(self.socket_id, other.send_buffer, buffer_tell(other.send_buffer));
+                //changed to self. ... at part 2 at 14:45
+            }
+        }
+        
+        break;
+        
         /*case MESSAGE_PLAYER_DATA:
         
         //read what the server sent to us
@@ -150,3 +169,19 @@ while(true){
     network_send_raw(socket, other.send_buffer, buffer_tell(send_buffer));
     
 //}
+#define client_send_player2_input
+///client_send_player2_input()
+    
+    buffer_seek(send_buffer, buffer_seek_start, 0);
+    
+    buffer_write(send_buffer, buffer_u8, PLAYER_INPUT); //PLAYER_INPUT == 2
+    //obj_controller.online_client_movement_array[W, A, S, D, LMB, RMB, SPACE, CTRL, mouse_x, mouse_y)
+    if(instance_exists(obj_player2_test)){
+        for(i = 0; i < 12; i+= 1){
+            buffer_write(send_buffer, buffer_s16, obj_controller.online_client_movement_array[i]);
+            //buffer_write(send_buffer, buffer_u16, round(obj_player2_test.y));
+        }
+    }
+    
+    //network_send_raw(self.socket, other.send_buffer, buffer_tell(other.send_buffer));
+    network_send_raw(socket, other.send_buffer, buffer_tell(send_buffer));

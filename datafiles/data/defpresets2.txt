@@ -1,0 +1,8 @@
+def_preset1:
+chaser1, 856, 472, 128, 1
+chaser2, 664, 536, 80, 1
+chaser3, 692, 396, 80, 1
+keeper1, 680, 464, 80, 1
+beater1, 776, 432, 80, 1
+beater2, 768, 496, 80, 1
+,end

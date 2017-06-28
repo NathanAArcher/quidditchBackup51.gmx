@@ -8,6 +8,37 @@
   <parentName>obj_player_dummy</parentName>
   <maskName>spr_playerv2_mask</maskName>
   <events>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//if(instance_exists(obj_player)){
+if(global.online and global.host != 1){
+    client_send_player2_input()
+    alarm[0] = 1;
+}
+if(global.online and global.host == 1){
+    alarm[0] = 1;
+}
+//}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -9192,6 +9223,36 @@ global.seeker1y = y
           <argument>
             <kind>0</kind>
             <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="68">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>switch(async_load[? "type"]){ //part of a DS map
+    
+    case network_type_data:
+        client_handle_message(async_load[? "buffer"]);
+    break;
+    
+
+}
+</string>
           </argument>
         </arguments>
       </action>

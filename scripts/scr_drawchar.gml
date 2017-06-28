@@ -4,6 +4,12 @@ if global.threedmode == true{
     scale = 1
 }
 
+var arm_alpha = 1
+
+if(self_id == 74){
+    arm_alpha = 0
+}
+
 headangle = 0
 torsoangle = 0
 
@@ -12,7 +18,7 @@ if room == rm_prepitch_alt or room == rm_prepitch{
         draw_sprite_ext(spr_player_tackle, direction/45, x, y, scale, scale*st_height, 0, c_white, 1)
         draw_sprite_ext(spr_player_tackle_shirt, direction/45, x, y, scale, scale*st_height, 0, team_color, 1)
         draw_sprite_ext(spr_tackle_shorts, direction/45, x, y, scale, scale*st_height, 0, team_color_secondary, 1)
-        draw_sprite_ext(spr_tackle_skin, direction/45, x, y, scale, scale*st_height, 0, scr_getskin(1), 1)
+        draw_sprite_ext(spr_tackle_skin, direction/45, x, y, scale, scale*st_height, 0, scr_getskin(1), arm_alpha)
         if  ((self_id >= 0 and self_id <= 74) == false){
             draw_sprite_ext(spr_default_head, direction/45, x, y, scale, scale, 0, c_white, 1)
             draw_sprite_ext(spr_default_headband, direction/45, x, y, scale, scale, 0, headbandcolor[st_position], 1)
@@ -22,7 +28,7 @@ if room == rm_prepitch_alt or room == rm_prepitch{
                 draw_sprite_ext(spr_female_hair, direction/45, x, y, scale, scale, 0, scr_gethair(ch_hair), 1)
             }
         }else{
-                scr_draw_smallheads(self_id, direction/45, x, y, scale, scale, 0, c_white, 1)
+            scr_draw_smallheads(self_id, direction/45, x, y, scale, scale, 0, c_white, 1)
         }
     }
     exit
@@ -276,7 +282,7 @@ if(ch_ball = true) and draw_direction < 112.5 and draw_direction >= 67.5{ //to d
     if blocking = false and windup == 0{
         if(st_position < 3)
         {
-         draw_sprite_ext(spr_quaffle_up, -1, x, y, scale, scale, 0, c_white, 1)
+         draw_sprite_ext(spr_quaffle_up, -1, x, y, scale, scale, 0, c_white, arm_alpha)
         }
         if(st_position == 3){
          draw_sprite_ext(spr_bludger_up, -1, x, y, scale, scale, 0, c_white, 1)
@@ -286,7 +292,7 @@ if(ch_ball = true) and draw_direction < 112.5 and draw_direction >= 67.5{ //to d
         if(windup <= 5){
             if(st_position < 3)
             {
-             draw_sprite_ext(spr_throw_up_quaffle, windup, x, y, scale, scale, 0, c_white, 1)
+             draw_sprite_ext(spr_throw_up_quaffle, windup, x, y, scale, scale, 0, c_white, arm_alpha)
             }
             if(st_position == 3){
              draw_sprite_ext(spr_throw_up_bludger, windup, x, y, scale, scale, 0, c_white, 1)
@@ -294,7 +300,7 @@ if(ch_ball = true) and draw_direction < 112.5 and draw_direction >= 67.5{ //to d
         }else{
             if(st_position < 3)
             {
-             draw_sprite_ext(spr_throw_up_quaffle, 5, x, y, scale, scale, 0, c_white, 1)
+             draw_sprite_ext(spr_throw_up_quaffle, 5, x, y, scale, scale, 0, c_white, arm_alpha)
             }
             if(st_position == 3){
              draw_sprite_ext(spr_throw_up_bludger, 5, x, y, scale, scale, 0, c_white, 1)
@@ -306,7 +312,7 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
     if blocking = false and windup == 0{
         if(st_position < 3)
         {
-         draw_sprite_ext(spr_quaffle_upright, -1, x, y, -1*scale, scale, 0, c_white, 1)
+         draw_sprite_ext(spr_quaffle_upright, -1, x, y, -1*scale, scale, 0, c_white, arm_alpha)
         }
         if(st_position == 3){
          draw_sprite_ext(spr_bludger_upright, -1, x, y, -1*scale, scale, 0, c_white, 1)
@@ -316,7 +322,7 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
         if(windup <= 5){
             if(st_position < 3)
             {
-             draw_sprite_ext(spr_throw_upright_quaffle, windup, x, y, -1*scale, scale, 0, c_white, 1)
+             draw_sprite_ext(spr_throw_upright_quaffle, windup, x, y, -1*scale, scale, 0, c_white, arm_alpha)
             }
             if(st_position == 3){
              draw_sprite_ext(spr_throw_upright_bludger, windup, x, y, -1*scale, scale, 0, c_white, 1)
@@ -324,7 +330,7 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
         }else{
             if(st_position < 3)
             {
-             draw_sprite_ext(spr_throw_upright_quaffle, 5, x, y, -1*scale, scale, 0, c_white, 1)
+             draw_sprite_ext(spr_throw_upright_quaffle, 5, x, y, -1*scale, scale, 0, c_white, arm_alpha)
             }
             if(st_position == 3){
              draw_sprite_ext(spr_throw_upright_bludger, 5, x, y, -1*scale, scale, 0, c_white, 1)
@@ -341,19 +347,19 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
                     draw_sprite_ext(spr_new_right, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     draw_sprite_ext(spr_jersey_right, -1, x, y, scale*st_weight, scale*st_height, torsoangle, team_color, 1)
                     if blocking or drag != 0{
-                        draw_sprite_ext(spr_skin_right_block, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_right, 0, x+(torsoangle/4), y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_right_block, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_right, 0, x+(torsoangle/4), y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                     }else if windup > 0 and ch_ball == true{
                         if(windup <= 5){
-                            draw_sprite_ext(spr_throw_right, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1) //throw_leway will set to 15 after a ball is thrown, and count down to 0
-                            draw_sprite_ext(spr_sleeves_throw_right, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                            draw_sprite_ext(spr_throw_right, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha) //throw_leway will set to 15 after a ball is thrown, and count down to 0
+                            draw_sprite_ext(spr_sleeves_throw_right, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                         }else{
-                            draw_sprite_ext(spr_throw_right, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1) //throw_leway will set to 15 after a ball is thrown, and count down to 0
-                            draw_sprite_ext(spr_sleeves_throw_right, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)                        
+                            draw_sprite_ext(spr_throw_right, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha) //throw_leway will set to 15 after a ball is thrown, and count down to 0
+                            draw_sprite_ext(spr_sleeves_throw_right, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)                        
                         }
                     }else{
-                        draw_sprite_ext(spr_skin_right, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_right, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_right, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_right, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, arm_alpha)
                     }
                     draw_sprite_ext(spr_legs_right, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
                     draw_sprite_ext(spr_shorts_right, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
@@ -363,19 +369,19 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
                     draw_sprite_ext(spr_new_upright, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     draw_sprite_ext(spr_jersey_upright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color, 1)
                     if blocking or drag != 0{
-                        draw_sprite_ext(spr_skin_upright_block, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_upright, 0, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_upright_block, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_upright, 0, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                     }else if windup > 0 and ch_ball == true{
                         if(windup <= 5){
-                            draw_sprite_ext(spr_throw_upright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_upright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                            draw_sprite_ext(spr_throw_upright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_upright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                         }else{
-                            draw_sprite_ext(spr_throw_upright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_upright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)                        
+                            draw_sprite_ext(spr_throw_upright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_upright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)                        
                         }
                     }else{
-                        draw_sprite_ext(spr_skin_upright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_upright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_upright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_upright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, arm_alpha)
                     }
                     draw_sprite_ext(spr_legs_upright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
                     draw_sprite_ext(spr_shorts_upright, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
@@ -385,19 +391,19 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
                     draw_sprite_ext(spr_new_up, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     draw_sprite_ext(spr_jersey_up, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color, 1)
                     if blocking or drag != 0{
-                        draw_sprite_ext(spr_skin_up_block, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_up, 0, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_up_block, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_up, 0, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                     }else if windup > 0 and ch_ball == true{
                         if(windup <= 5){
-                            draw_sprite_ext(spr_throw_up, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_up, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                            draw_sprite_ext(spr_throw_up, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_up, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                         }else{
-                            draw_sprite_ext(spr_throw_up, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_up, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)                        
+                            draw_sprite_ext(spr_throw_up, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_up, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)                        
                         }
                     }else{
-                        draw_sprite_ext(spr_skin_up, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_up, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_up, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_up, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, arm_alpha)
                     }
                     draw_sprite_ext(spr_legs_up, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
                     draw_sprite_ext(spr_shorts_up, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
@@ -407,19 +413,19 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
                     draw_sprite_ext(spr_new_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
                     draw_sprite_ext(spr_jersey_upright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color, 1)
                     if blocking or drag != 0{
-                        draw_sprite_ext(spr_skin_upright_block, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_upright, 0, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_upright_block, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_upright, 0, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                     }else if windup > 0 and ch_ball == true{
                         if(windup <= 5){
-                            draw_sprite_ext(spr_throw_upright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_upright, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                            draw_sprite_ext(spr_throw_upright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_upright, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                         }else{
-                            draw_sprite_ext(spr_throw_upright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_upright, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)                        
+                            draw_sprite_ext(spr_throw_upright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_upright, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)                        
                         }
                     }else{
-                        draw_sprite_ext(spr_skin_upright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_upright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_upright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_upright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color_secondary, arm_alpha)
                     }
                     draw_sprite_ext(spr_legs_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
                     draw_sprite_ext(spr_shorts_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
@@ -429,19 +435,19 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
                     draw_sprite_ext(spr_new_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
                     draw_sprite_ext(spr_jersey_right, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color, 1)
                     if blocking or drag != 0{
-                        draw_sprite_ext(spr_skin_right_block, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_right, 0, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_right_block, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_right, 0, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                     }else if windup > 0 and ch_ball == true{
                         if(windup <= 5){
-                            draw_sprite_ext(spr_throw_right, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_right, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                            draw_sprite_ext(spr_throw_right, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_right, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                         }else{
-                            draw_sprite_ext(spr_throw_right, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_right, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)                        
+                            draw_sprite_ext(spr_throw_right, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_right, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)                        
                         }
                     }else{
-                        draw_sprite_ext(spr_skin_right, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_right, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_right, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_right, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color_secondary, arm_alpha)
                     }
                     draw_sprite_ext(spr_legs_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
                     draw_sprite_ext(spr_shorts_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
@@ -451,19 +457,19 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
                     draw_sprite_ext(spr_new_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
                     draw_sprite_ext(spr_jersey_downright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color, 1)
                     if blocking or drag != 0{
-                        draw_sprite_ext(spr_skin_downright_block, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_downright, 0, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_downright_block, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_downright, 0, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                     }else if windup > 0 and ch_ball == true{
                         if(windup <= 5){
-                            draw_sprite_ext(spr_throw_upright, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_downright, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                            draw_sprite_ext(spr_throw_upright, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_downright, windup + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                         }else{
-                            draw_sprite_ext(spr_throw_upright, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_downright, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)                        
+                            draw_sprite_ext(spr_throw_upright, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_downright, 5 + (throw_leway/3), x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)                        
                         }
                     }else{
-                        draw_sprite_ext(spr_skin_downright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_downright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_downright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_downright, -1, x+(torsoangle/4), y, -1*scale*st_weight, scale*st_height, torsoangle, team_color_secondary, arm_alpha)
                     }
                     draw_sprite_ext(spr_legs_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
                     draw_sprite_ext(spr_shorts_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
@@ -473,41 +479,41 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
                     draw_sprite_ext(spr_new_down, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     draw_sprite_ext(spr_jersey_down, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color, 1)
                     if blocking or drag != 0{
-                        draw_sprite_ext(spr_skin_down_block, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_down, 0, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_down_block, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_down, 0, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                     }else if windup > 0 and ch_ball == true{
                         if(windup <= 5){
-                            draw_sprite_ext(spr_throw_down, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_down, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                            draw_sprite_ext(spr_throw_down, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_down, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                         }else{
                             draw_sprite_ext(spr_throw_down, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_down, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)                        
+                            draw_sprite_ext(spr_sleeves_throw_down, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)                        
                         }
                     }else{
-                        draw_sprite_ext(spr_skin_down, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_down, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_down, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_down, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, arm_alpha)
                     }
                     draw_sprite_ext(spr_legs_down, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
                     draw_sprite_ext(spr_shorts_down, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
                     draw_sprite_ext(spr_shoes_down, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
             }
             if draw_direction < 337.5 and draw_direction >= 292.5{
-                    draw_sprite_ext(spr_new_downright, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
+                    draw_sprite_ext(spr_new_downright, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, arm_alpha)
                     draw_sprite_ext(spr_jersey_downright, -1, x, y, scale*st_weight, scale*st_height, torsoangle, team_color, 1)
                     if blocking or drag != 0{
-                        draw_sprite_ext(spr_skin_downright_block, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_downright, 0, x+(torsoangle/4), y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_downright_block, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_downright, 0, x+(torsoangle/4), y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                     }else if windup > 0 and ch_ball == true{
                         if(windup <= 5){
-                            draw_sprite_ext(spr_throw_downright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_downright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
+                            draw_sprite_ext(spr_throw_downright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_downright, windup + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)
                         }else{
-                            draw_sprite_ext(spr_throw_downright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                            draw_sprite_ext(spr_sleeves_throw_downright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)                        
+                            draw_sprite_ext(spr_throw_downright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
+                            draw_sprite_ext(spr_sleeves_throw_downright, 5 + (throw_leway/3), x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, arm_alpha)                        
                         }
                     }else{
-                        draw_sprite_ext(spr_skin_downright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), 1)
-                        draw_sprite_ext(spr_sleeves_downright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, 1)
+                        draw_sprite_ext(spr_skin_downright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, scr_getskin(1), arm_alpha)
+                        draw_sprite_ext(spr_sleeves_downright, -1, x+(torsoangle/4), y, scale*st_weight, scale*st_height, torsoangle, team_color_secondary, arm_alpha)
                     }
                     draw_sprite_ext(spr_legs_downright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
                     draw_sprite_ext(spr_shorts_downright, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
@@ -517,9 +523,9 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
             if draw_direction < 22.5 or draw_direction >= 337.5{
                     draw_sprite_ext(spr_shorts_right, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1) //originall spr_nobroom_right until changed 10/27/2016 BACKUP36
                     draw_sprite_ext(spr_legs_right, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                    draw_sprite_ext(spr_sleeves_right, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, 1)
+                    draw_sprite_ext(spr_sleeves_right, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, arm_alpha)
                     draw_sprite_ext(spr_jersey_right, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, 1)
-                    draw_sprite_ext(spr_skin_right, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_skin_right, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_shoes_right, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     if ch_broom_drop == false{
                         draw_sprite_ext(spr_broom_right, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
@@ -528,9 +534,9 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
             if draw_direction < 67.5 and draw_direction >= 22.5{
                     draw_sprite_ext(spr_shorts_upright, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
                     draw_sprite_ext(spr_legs_upright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                    draw_sprite_ext(spr_sleeves_upright, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, 1)
+                    draw_sprite_ext(spr_sleeves_upright, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, arm_alpha)
                     draw_sprite_ext(spr_jersey_upright, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, 1)
-                    draw_sprite_ext(spr_skin_upright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_skin_upright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_shoes_upright, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     if ch_broom_drop == false{
                         draw_sprite_ext(spr_broom_upright, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
@@ -539,9 +545,9 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
             if draw_direction < 112.5 and draw_direction >= 67.5{
                     draw_sprite_ext(spr_shorts_up, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
                     draw_sprite_ext(spr_legs_up, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                    draw_sprite_ext(spr_sleeves_up, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, 1)
+                    draw_sprite_ext(spr_sleeves_up, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, arm_alpha)
                     draw_sprite_ext(spr_jersey_up, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, 1)
-                    draw_sprite_ext(spr_skin_up, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_skin_up, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_shoes_up, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     if ch_broom_drop == false{
                         draw_sprite_ext(spr_broom_up, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
@@ -550,9 +556,9 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
             if draw_direction < 157.5 and draw_direction >= 112.5{
                     draw_sprite_ext(spr_shorts_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
                     draw_sprite_ext(spr_legs_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                    draw_sprite_ext(spr_sleeves_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_sleeves_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_jersey_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color, 1)
-                    draw_sprite_ext(spr_skin_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_skin_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_shoes_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
                     if ch_broom_drop == false{
                         draw_sprite_ext(spr_broom_upright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
@@ -561,9 +567,9 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
             if draw_direction < 202.5 and draw_direction >= 157.5{
                     draw_sprite_ext(spr_shorts_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
                     draw_sprite_ext(spr_legs_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                    draw_sprite_ext(spr_sleeves_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_sleeves_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_jersey_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color, 1)
-                    draw_sprite_ext(spr_skin_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_skin_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_shoes_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
                     if ch_broom_drop == false{
                         draw_sprite_ext(spr_broom_right, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
@@ -572,9 +578,9 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
             if draw_direction < 247.5 and draw_direction >= 202.5{
                     draw_sprite_ext(spr_shorts_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
                     draw_sprite_ext(spr_legs_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                    draw_sprite_ext(spr_sleeves_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_sleeves_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_jersey_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, team_color, 1)
-                    draw_sprite_ext(spr_skin_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_skin_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_shoes_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
                     if ch_broom_drop == false{
                         draw_sprite_ext(spr_broom_downright, -1, x, y, -1*scale*st_weight, scale*st_height, 0, c_white, 1)
@@ -583,9 +589,9 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
             if draw_direction < 292.5 and draw_direction >= 247.5{
                     draw_sprite_ext(spr_shorts_down, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
                     draw_sprite_ext(spr_legs_down, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                    draw_sprite_ext(spr_sleeves_down, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_sleeves_down, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_jersey_down, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, 1)
-                    draw_sprite_ext(spr_skin_down, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_skin_down, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_shoes_down, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     if ch_broom_drop == false{
                         draw_sprite_ext(spr_broom_down, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
@@ -594,9 +600,9 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
             if draw_direction < 337.5 and draw_direction >= 292.5{
                     draw_sprite_ext(spr_shorts_downright, -1, x, y, scale*st_weight, scale*st_height, 0, team_color_secondary, 1)
                     draw_sprite_ext(spr_legs_downright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
-                    draw_sprite_ext(spr_sleeves_downright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_sleeves_downright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_jersey_downright, -1, x, y, scale*st_weight, scale*st_height, 0, team_color, 1)
-                    draw_sprite_ext(spr_skin_downright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_skin_downright, -1, x, y, scale*st_weight, scale*st_height, 0, scr_getskin(1), arm_alpha)
                     draw_sprite_ext(spr_shoes_downright, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
                     if ch_broom_drop == false{
                         draw_sprite_ext(spr_broom_downright, -1, x, y, scale*st_weight, scale*st_height, 0, c_white, 1)
@@ -613,7 +619,13 @@ if(ch_ball = true) and draw_direction < 157.5 and draw_direction >= 112.5{ //to 
                 draw_sprite_ext(spr_female_hair, draw_direction/45, x, y, scale, scale, headangle, scr_gethair(ch_hair), 1)
             }
         }else{
+            if(self_id == 74 and ch_ball == true) and ((direction > 45 and direction < 135) == true){ //special draw for norm, because he has no arms
+                draw_sprite_ext(spr_norm_hold_ball, direction/45, x, y, scale, scale, headangle, c_white, 1)
+            }
             scr_draw_smallheads(self_id, draw_direction/45, x, y, scale, scale, headangle, c_white, 1)
+            if(self_id == 74 and ch_ball == true) and ((direction > 45 and direction < 135) == false){ //special draw for norm, because he has no arms
+                draw_sprite_ext(spr_norm_hold_ball, direction/45, x, y, scale, scale, headangle, c_white, 1)
+            }
         }
     }
 }
@@ -627,7 +639,7 @@ if jumping = true or (tackle == true and scuffling == false) or (scuffling == tr
         draw_sprite_ext(spr_player_tackle, draw_direction/45, x, y, scale, scale*st_height, 0, c_white, 1)
         draw_sprite_ext(spr_player_tackle_shirt, draw_direction/45, x, y, scale, scale*st_height, 0, team_color, 1)
         draw_sprite_ext(spr_tackle_shorts, draw_direction/45, x, y, scale, scale*st_height, 0, team_color_secondary, 1)
-        draw_sprite_ext(spr_tackle_skin, draw_direction/45, x, y, scale, scale*st_height, 0, scr_getskin(1), 1)
+        draw_sprite_ext(spr_tackle_skin, draw_direction/45, x, y, scale, scale*st_height, 0, scr_getskin(1), arm_alpha)
         if  ((self_id >= 0 and self_id <= 74) == false){
             draw_sprite_ext(spr_default_head, draw_direction/45, x, y, scale, scale, 0, c_white, 1)
             draw_sprite_ext(spr_default_headband, draw_direction/45, x, y, scale, scale, 0, headbandcolor[st_position], 1)
@@ -701,28 +713,28 @@ if(ch_ball = true){
         if(st_position < 3)
         {
             if draw_direction < 22.5 or draw_direction >= 337.5{
-                    draw_sprite_ext(spr_quaffle_right, -1, x, y, scale, scale, 0, c_white, 1)
+                    draw_sprite_ext(spr_quaffle_right, -1, x, y, scale, scale, 0, c_white, arm_alpha)
             }
             if draw_direction < 67.5 and draw_direction >= 22.5{
-                    draw_sprite_ext(spr_quaffle_upright, -1, x, y, scale, scale, 0, c_white, 1)
+                    draw_sprite_ext(spr_quaffle_upright, -1, x, y, scale, scale, 0, c_white, arm_alpha)
             }
             /*if draw_direction < 112.5 and draw_direction >= 67.5{
-                    draw_sprite_ext(spr_quaffle_up, -1, x, y, scale, scale, 0, scr_getskin(1), 1)
+                    draw_sprite_ext(spr_quaffle_up, -1, x, y, scale, scale, 0, scr_getskin(1), arm_alpha)
             }Draw BEHIND character*/ 
             if draw_direction < 157.5 and draw_direction >= 112.5{
-                    draw_sprite_ext(spr_quaffle_upright, -1, x, y, -1*scale, scale, 0, c_white, 1)
+                    draw_sprite_ext(spr_quaffle_upright, -1, x, y, -1*scale, scale, 0, c_white, arm_alpha)
             }
             if draw_direction < 202.5 and draw_direction >= 157.5{
-                    draw_sprite_ext(spr_quaffle_right, -1, x, y, -1*scale, scale, 0, c_white, 1)
+                    draw_sprite_ext(spr_quaffle_right, -1, x, y, -1*scale, scale, 0, c_white, arm_alpha)
             }
             if draw_direction < 247.5 and draw_direction >= 202.5{
-                    draw_sprite_ext(spr_quaffle_downright, -1, x, y, -1*scale, scale, 0, c_white, 1)
+                    draw_sprite_ext(spr_quaffle_downright, -1, x, y, -1*scale, scale, 0, c_white, arm_alpha)
             }
             if draw_direction < 292.5 and draw_direction >= 247.5{
-                    draw_sprite_ext(spr_quaffle_down, -1, x, y, scale, scale, 0, c_white, 1)
+                    draw_sprite_ext(spr_quaffle_down, -1, x, y, scale, scale, 0, c_white, arm_alpha)
             }
             if draw_direction < 337.5 and draw_direction >= 292.5{
-                    draw_sprite_ext(spr_quaffle_down, -1, x, y, scale, scale, 0, c_white, 1)
+                    draw_sprite_ext(spr_quaffle_down, -1, x, y, scale, scale, 0, c_white, arm_alpha)
             }
         }
         if(st_position == 3)
@@ -757,28 +769,28 @@ if(ch_ball = true){
             if(st_position < 3)
             {
                 if draw_direction < 22.5 or draw_direction >= 337.5{
-                        draw_sprite_ext(spr_throw_right_quaffle, windup, x, y, scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_right_quaffle, windup, x, y, scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 67.5 and draw_direction >= 22.5{
-                        draw_sprite_ext(spr_throw_upright_quaffle, windup, x, y, scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_upright_quaffle, windup, x, y, scale, scale, 0, c_white, arm_alpha)
                 }
                 /*if draw_direction < 112.5 and draw_direction >= 67.5{
-                        draw_sprite_ext(spr_quaffle_up, -1, x, y, scale, scale, 0, scr_getskin(1), 1)
+                        draw_sprite_ext(spr_quaffle_up, -1, x, y, scale, scale, 0, scr_getskin(1), arm_alpha)
                 }Draw BEHIND character*/ 
                 if draw_direction < 157.5 and draw_direction >= 112.5{
-                        draw_sprite_ext(spr_throw_upright_quaffle, windup, x, y, -1*scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_upright_quaffle, windup, x, y, -1*scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 202.5 and draw_direction >= 157.5{
-                        draw_sprite_ext(spr_throw_right_quaffle, windup, x, y, -1*scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_right_quaffle, windup, x, y, -1*scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 247.5 and draw_direction >= 202.5{
-                        draw_sprite_ext(spr_throw_downright_quaffle, windup, x, y, -1*scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_downright_quaffle, windup, x, y, -1*scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 292.5 and draw_direction >= 247.5{
-                        draw_sprite_ext(spr_throw_down_quaffle, windup, x, y, scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_down_quaffle, windup, x, y, scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 337.5 and draw_direction >= 292.5{
-                        draw_sprite_ext(spr_throw_downright_quaffle, windup, x, y, scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_downright_quaffle, windup, x, y, scale, scale, 0, c_white, arm_alpha)
                 }
             }
             if(st_position == 3)
@@ -812,28 +824,28 @@ if(ch_ball = true){
             if(st_position < 3)
             {
                 if draw_direction < 22.5 or draw_direction >= 337.5{
-                        draw_sprite_ext(spr_throw_right_quaffle, 5, x, y, scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_right_quaffle, 5, x, y, scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 67.5 and draw_direction >= 22.5{
-                        draw_sprite_ext(spr_throw_upright_quaffle, 5, x, y, scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_upright_quaffle, 5, x, y, scale, scale, 0, c_white, arm_alpha)
                 }
                 /*if draw_direction < 112.5 and draw_direction >= 67.5{
-                        draw_sprite_ext(spr_quaffle_up, -1, x, y, scale, scale, 0, scr_getskin(1), 1)
+                        draw_sprite_ext(spr_quaffle_up, -1, x, y, scale, scale, 0, scr_getskin(1), arm_alpha)
                 }Draw BEHIND character*/ 
                 if draw_direction < 157.5 and draw_direction >= 112.5{
-                        draw_sprite_ext(spr_throw_upright_quaffle, 5, x, y, -1*scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_upright_quaffle, 5, x, y, -1*scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 202.5 and draw_direction >= 157.5{
-                        draw_sprite_ext(spr_throw_right_quaffle, 5, x, y, -1*scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_right_quaffle, 5, x, y, -1*scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 247.5 and draw_direction >= 202.5{
-                        draw_sprite_ext(spr_throw_downright_quaffle, 5, x, y, -1*scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_downright_quaffle, 5, x, y, -1*scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 292.5 and draw_direction >= 247.5{
-                        draw_sprite_ext(spr_throw_down_quaffle, 5, x, y, scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_down_quaffle, 5, x, y, scale, scale, 0, c_white, arm_alpha)
                 }
                 if draw_direction < 337.5 and draw_direction >= 292.5{
-                        draw_sprite_ext(spr_throw_downright_quaffle, 5, x, y, scale, scale, 0, c_white, 1)
+                        draw_sprite_ext(spr_throw_downright_quaffle, 5, x, y, scale, scale, 0, c_white, arm_alpha)
                 }
             }
             if(st_position == 3)

@@ -56,6 +56,8 @@ instance_activate_all()</code>
     <instance objName="obj_broomsup_interface" x="64" y="0" name="inst_02324C62" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_help_skill" x="8" y="40" name="inst_F174FC26" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_load_presets" x="16" y="96" name="inst_DFFF493F" locked="0" code="deforoff = 0&#xA;presetindex = 1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_load_presets" x="16" y="128" name="inst_20A28B84" locked="0" code="deforoff = 0&#xA;presetindex = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_load_presets" x="16" y="160" name="inst_B02D6C80" locked="0" code="deforoff = 0&#xA;presetindex = 3&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgr_tileset_chalk" x="144" y="216" w="32" h="32" xo="0" yo="32" id="10008310" name="tile_93A214B5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

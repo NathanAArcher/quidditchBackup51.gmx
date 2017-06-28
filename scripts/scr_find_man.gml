@@ -1,9 +1,9 @@
 //find "man" for man to man
 
-if room == rm_test{
-manX = x
-manY = y
-exit
+if room == rm_test or rm_alt{
+    manX = x
+    manY = y
+    exit
 }
 
 for(i = 0; i < 4; i += 1){

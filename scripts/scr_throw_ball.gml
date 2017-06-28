@@ -8,6 +8,16 @@
 //argument3 = speed == throwtype
 //argument4 = direction
 
+if(global.online){
+    if(global.host != 1){
+        exit
+    }
+}
+
+if(self == obj_online_player){
+    exit
+}
+
 var inst;
 inst = instance_create(argument1, argument2, argument0)
 with (inst){

@@ -9941,7 +9941,7 @@ st_position = 2
           </argument>
           <argument>
             <kind>0</kind>
-            <string>"Alright we're almost to the pitch."</string>
+            <string>"Alright we're almost to the pitch. (Press SPACE to continue)"</string>
           </argument>
           <argument>
             <kind>0</kind>
@@ -10326,7 +10326,7 @@ draw_text_with_outline(view_xview[0]+320, view_yview[0], "Pick up the bludgers (
           </argument>
           <argument>
             <kind>0</kind>
-            <string>"Alright we're almost to the pitch."</string>
+            <string>"Alright we're almost to the pitch. (Press SPACE to continue)"</string>
           </argument>
           <argument>
             <kind>0</kind>
@@ -10475,7 +10475,7 @@ global.team2_name = "Tutorial";
           </argument>
           <argument>
             <kind>0</kind>
-            <string>"Use the WASD keys to move and SHIFT to sprint over to the pitch with me."</string>
+            <string>"Use the WASD or ZQSD keys to move and SHIFT to sprint over to the pitch with me."</string>
           </argument>
           <argument>
             <kind>0</kind>

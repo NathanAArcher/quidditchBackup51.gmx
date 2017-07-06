@@ -1950,23 +1950,6 @@
         <filename>defpresets1.txt</filename>
       </datafile>
       <datafile>
-        <name>offpresets1.txt</name>
-        <exists>-1</exists>
-        <size>132</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>offpresets1.txt</filename>
-      </datafile>
-      <datafile>
         <name>defpresets2.txt</name>
         <exists>-1</exists>
         <size>175</size>
@@ -1982,6 +1965,40 @@
           </Config>
         </ConfigOptions>
         <filename>defpresets2.txt</filename>
+      </datafile>
+      <datafile>
+        <name>defpresets3.txt</name>
+        <exists>-1</exists>
+        <size>176</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>defpresets3.txt</filename>
+      </datafile>
+      <datafile>
+        <name>offpresets1.txt</name>
+        <exists>-1</exists>
+        <size>132</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>offpresets1.txt</filename>
       </datafile>
       <datafile>
         <name>offpresets2.txt</name>
@@ -2016,23 +2033,6 @@
           </Config>
         </ConfigOptions>
         <filename>offpresets3.txt</filename>
-      </datafile>
-      <datafile>
-        <name>defpresets3.txt</name>
-        <exists>-1</exists>
-        <size>176</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>defpresets3.txt</filename>
       </datafile>
       <datafile>
         <name>savenames.txt</name>
@@ -2119,6 +2119,10 @@
   </sounds>
   <sprites name="sprites">
     <sprites name="interface">
+      <sprite>sprites\spr_facebooklink</sprite>
+      <sprite>sprites\spr_leagueplay_alt</sprite>
+      <sprite>sprites\spr_small_savebutton</sprite>
+      <sprite>sprites\spr_small_loadbutton</sprite>
       <sprite>sprites\spr_strategy_glow</sprite>
       <sprite>sprites\spr_brooms_up</sprite>
       <sprite>sprites\spr_autocalc</sprite>
@@ -2153,6 +2157,7 @@
       <sprite>sprites\spr_binder</sprite>
       <sprite>sprites\spr_selection_arrow_left</sprite>
       <sprite>sprites\spr_selection_arrow_right</sprite>
+      <sprite>sprites\spr_smaller_selection_arrow_right</sprite>
       <sprite>sprites\spr_x</sprite>
       <sprite>sprites\spr_o</sprite>
       <sprite>sprites\spr_save</sprite>
@@ -2184,6 +2189,14 @@
     <sprites name="create character">
       <sprite>sprites\spr_eyes</sprite>
     </sprites>
+    <sprites name="Steam">
+      <sprite>sprites\spr_steam_logo</sprite>
+      <sprite>sprites\spr_badges</sprite>
+      <sprite>sprites\spr_emoticons</sprite>
+    </sprites>
+    <sprite>sprites\spr_wasd_debug</sprite>
+    <sprite>sprites\spr_mouse_debug</sprite>
+    <sprite>sprites\spr_mask_empty</sprite>
     <sprite>sprites\spr_skifreeyeti</sprite>
     <sprite>sprites\spr_skifreeedit</sprite>
     <sprite>sprites\spr_player_eaten</sprite>
@@ -2487,7 +2500,9 @@
     <sprite>sprites\spr_ball_mask</sprite>
   </sprites>
   <backgrounds name="background">
+    <background>background\bgr_new_menu</background>
     <background>background\bgr_treehousemask</background>
+    <background>background\bgr_new_treehousemask</background>
     <background>background\bgr_easter_egg</background>
     <background>background\bgr_bracket</background>
     <background>background\bgr_dashboard2</background>
@@ -2551,7 +2566,9 @@
   <paths name="paths">
     <path>paths\quaffle_bounce</path>
     <path>paths\path1</path>
+    <path>paths\pth_snitch_bounce</path>
     <path>paths\pth_bounce</path>
+    <path>paths\path3</path>
   </paths>
   <scripts name="scripts">
     <scripts name="sounds">
@@ -2618,6 +2635,7 @@
       <script>scripts\scr_quaffle_failsafe.gml</script>
       <script>scripts\scr_bludger_collision.gml</script>
     </scripts>
+    <script>scripts\scr_create_exclam.gml</script>
     <script>scripts\scr_reference.gml</script>
     <script>scripts\scr_instance_nth_nearest.gml</script>
     <script>scripts\scr_flip_coordinate_x.gml</script>
@@ -2699,6 +2717,9 @@
   <objects name="objects">
     <objects name="buttons">
       <object>objects\obj_checkbox</object>
+      <object>objects\obj_facebooklink</object>
+      <object>objects\obj_twitterlink</object>
+      <object>objects\obj_redditlink</object>
       <object>objects\obj_unlock</object>
       <object>objects\obj_checkplayernumber</object>
       <object>objects\obj_check3D</object>
@@ -2721,11 +2742,16 @@
       <object>objects\obj_checkglow</object>
       <object>objects\obj_checkballicon</object>
       <object>objects\obj_selection_arrow_right</object>
+      <object>objects\obj_online_filter_gametype</object>
+      <object>objects\obj_online_filter_threedmode</object>
+      <object>objects\obj_online_filter_aim_assist</object>
       <object>objects\obj_next_pregame_tip</object>
       <object>objects\obj_fov_plus</object>
       <object>objects\obj_fov_minus</object>
       <object>objects\obj_tab1</object>
       <object>objects\obj_load_presets</object>
+      <object>objects\obj_load_custom_presets</object>
+      <object>objects\obj_save_presets</object>
       <object>objects\obj_selection_arrow_left</object>
       <object>objects\obj_nextbutton</object>
       <object>objects\obj_prevbutton</object>
@@ -2926,10 +2952,11 @@
     <room>rooms\rm_credits</room>
     <room>rooms\rm_waiting</room>
     <room>rooms\rm_stats</room>
+    <room>rooms\rm_alt_menu</room>
     <room>rooms\room39</room>
   </rooms>
   <constants number="4">
-    <constant name="PLAYER_INPUT">2</constant>
+    <constant name="PLAYER_INPUT">7</constant>
     <constant name="UPDATE_SPEED">3</constant>
     <constant name="MESSAGE_MOVE">1</constant>
     <constant name="MESSAGE_PLAYER_DATA">2</constant>

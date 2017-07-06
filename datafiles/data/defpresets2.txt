@@ -1,4 +1,4 @@
-def_preset1:
+def_preset2:
 chaser1, 856, 472, 128, 1
 chaser2, 664, 536, 80, 1
 chaser3, 692, 396, 80, 1

@@ -78,6 +78,8 @@ if(keyboard_check(ord("S"))) y += 5;
             <string>//draw_sprite_ext(spr_player, -1, x, y, 1, 1, direction, c_white, 1)
 
 draw_sprite_ext(sprite_index, -1, x, y, 1, 1, 0, c_red, 1)
+draw_set_color(c_black)
+draw_text(x, y, "obj_player")
 </string>
           </argument>
         </arguments>

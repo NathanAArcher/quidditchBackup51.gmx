@@ -29,7 +29,7 @@
 
 for(i = 0; i &lt; 5; i += 1){
     if(obj_controller.online_ball_array[i, 0] == -1){
-        obj_controller.online_ball_array[i, 0] = 1;
+        obj_controller.online_ball_array[i, 0] = 2;
         array_index = i;
     }
 }
@@ -37,7 +37,7 @@ for(i = 0; i &lt; 5; i += 1){
 //failsafe. it shouldn't get here. It should fill empty spots in array.
 
 if(array_index == -1){
-    obj_controller.online_ball_array[0, 0] = 1;
+    obj_controller.online_ball_array[0, 0] = 2;
     array_index = 0;
 }
 </string>
@@ -12389,6 +12389,32 @@ if global.debugmode{
         </arguments>
       </action>
     </event>
+    <event eventtype="9" enumb="86">
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>visible</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="9" enumb="8">
       <action>
         <libid>1</libid>
@@ -12427,6 +12453,32 @@ if global.debugmode{
           <argument>
             <kind>0</kind>
             <string></string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="86">
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>visible</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
           </argument>
         </arguments>
       </action>

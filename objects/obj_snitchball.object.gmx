@@ -73,7 +73,7 @@
         <arguments>
           <argument>
             <kind>8</kind>
-            <path>path1</path>
+            <path>pth_snitch_bounce</path>
           </argument>
           <argument>
             <kind>0</kind>

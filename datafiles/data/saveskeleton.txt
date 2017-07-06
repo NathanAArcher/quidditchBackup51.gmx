@@ -1,0 +1,8 @@
+name:
+options:
+color:
+color_secondary:
+charray:
+schedule:
+bracket:
+wins/losses:

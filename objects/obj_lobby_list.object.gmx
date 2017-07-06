@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>lobby_array[0, 0] = -1
+selection = -1
+selectionlocked = false
 
 for(i = 0; i &lt; 15; i++){
     for(j = 0; j &lt; 7; j++){
@@ -66,6 +68,80 @@ for(i = 0; i &lt; 15; i++){
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//draw_rectangle(48, 48, 592, 400, false)
+
+if mouse_x &gt; 52 and mouse_x &lt; 588{
+    if (mouse_y &lt; 64 or mouse_y &gt; 360) == false{
+        cursor_sprite = spr_cursor
+    }
+    if(selectionlocked == false){
+        selection = -1
+        for(i = 0; i &lt; 15; i += 1){
+            if(mouse_y &gt;= 64+(24*i) and mouse_y &lt; 88+(24*i)){
+                selection = i
+            }
+        }
+    }
+}
+
+if (mouse_y &gt; 360){
+    if(cursor_sprite == spr_cursor){
+        cursor_sprite = spr_cursor2
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if mouse_x &gt; 52 and mouse_x &lt; 588{
+    if(mouse_y &gt; 64 and mouse_y &lt; 360){
+        if(selectionlocked == false){
+            selectionlocked = true;
+        }else{
+            selectionlocked = false;
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -91,12 +167,21 @@ draw_set_color(c_black)
 draw_rectangle(48, 48, 592, 400, false)
 draw_set_color(c_white)
 
+draw_text(48, 64, string(selection))
+
 for(k = 0; k &lt; 15; k++){
     if(lobby_array[k, 0] != -1){
         if(global.multi_search_filter_gamemode == -1 or global.multi_search_filter_gamemode == lobby_array[k, 1]) and
         (global.multi_search_filter_threedmode == -1 or global.multi_search_filter_threedmode == lobby_array[k, 2]) and
         (global.multi_search_filter_aim_assist == -1 or global.multi_search_filter_aim_assist == lobby_array[k, 3]) and
         (global.multi_search_filter_player_count == -1 or global.multi_search_filter_player_count == lobby_array[k, 5]){
+            if(selection == k){
+                draw_set_alpha(0.5)
+                draw_set_color(c_yellow)
+                draw_rectangle(52, 48+(24*k), 588, 48+(24*k)+24, false)
+                draw_set_color(c_white)
+                draw_set_alpha(1)
+            }
             draw_text(64, 64+(24*k), lobby_array[k, 0])
         }
     } 

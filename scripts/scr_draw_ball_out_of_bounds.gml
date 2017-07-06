@@ -53,7 +53,7 @@ draw_circle(oob_drawX+1, oob_drawY+1, 16, true)
 //draw thick circle
 
 if(instance_exists(obj_follow_object)){
-    draw_sprite_ext(spr_player_out_bounds_arrow, -1, oob_drawX, oob_drawY, 1, 1, point_direction(oob_drawX,oob_drawY, obj_follow_object.x, obj_follow_object.y), team_color, 1)
+    draw_sprite_ext(spr_player_out_bounds_arrow, -1, oob_drawX, oob_drawY, 1, 1, point_direction(obj_follow_object.x, obj_follow_object.y, oob_drawX, oob_drawY), team_color, 1)
 }
 
 if argument0 == 1{

@@ -15910,37 +15910,22 @@ if(ch_ball == true and st_position == 3 and instance_nearest(x, y, obj_player_te
       </action>
       <action>
         <libid>1</libid>
-        <id>206</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_create_object_motion</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
-        <relative>-1</relative>
+        <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>10</kind>
-            <object>obj_exclam</object>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>8</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>scr_create_exclam(x, y, 8, 0)
+</string>
           </argument>
         </arguments>
       </action>
@@ -16224,37 +16209,22 @@ if(ch_ball == true and st_position == 3 and instance_nearest(x, y, obj_player_te
       </action>
       <action>
         <libid>1</libid>
-        <id>206</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_create_object_motion</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
-        <relative>-1</relative>
+        <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>10</kind>
-            <object>obj_exclam</object>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>4</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>scr_create_exclam(x, y, 4, 0)
+</string>
           </argument>
         </arguments>
       </action>
@@ -16758,7 +16728,8 @@ if((random(8)+var_tackleCalc) &gt; 6){
     if(global.mute = false){
     sound_play(snd_thud)
     }
-    action_create_object_motion(obj_exclam, x, y, 9, 0)
+    //action_create_object_motion(obj_exclam, x, y, 9, 0)
+    scr_create_exclam(x, y, 9, 0)
 }
 </string>
           </argument>
@@ -16942,13 +16913,15 @@ if((random(8)+var_tackleCalc) &gt; 6){
             instance_create(x,y, obj_quaffle)
         }
         //instance_create(x, y, obj_exclam)
-        action_create_object_motion(obj_exclam, x, y, 0, 1) //TACKLE!
+        //action_create_object_motion(obj_exclam, x, y, 0, 1) //TACKLE!
+        scr_create_exclam(x, y, 1, 0)
     }else{
         tackle = true
         speed = st_power
         direction = random(360)
         other.ch_tackle_immunity = 15
-        action_create_object_motion(obj_exclam, x, y, 9, 0) //CHARGE!
+        //action_create_object_motion(obj_exclam, x, y, 9, 0) //CHARGE!
+        scr_create_exclam(x, y, 9, 0)
         if(global.mute = false){
             sound_play(snd_thud)
         }
@@ -16959,10 +16932,11 @@ if((random(8)+var_tackleCalc) &gt; 6){
 }
 
 //strip
-if(drag != 0 and other.drag != 0) and tackle == false and other.tackle == false{
+if(drag != 0 and other.drag != 0) and tackle == false and other.tackle == false and ch_ball == false{
     if irandom((other.st_grip+10 - st_grip)*25) == 1{ //if other.grip == st_grip, there will be a strip about once every 3 seconds a player is wrapped.
                                                     //if other.grip == 1, and st_grip == 10, there will be a grip about every .83 seconds
-        action_create_object_motion(obj_exclam, x, y, 4, 0) //STRIP!
+        //action_create_object_motion(obj_exclam, x, y, 4, 0) //STRIP!
+        scr_create_exclam(x, y, 4, 0)
         other.ch_ball = false
         other.tackle = true
         other.drag = 0
@@ -17095,6 +17069,34 @@ if tackle = true{ //successfully making the tackle
           <argument>
             <kind>0</kind>
             <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>ch_ball</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -17283,7 +17285,8 @@ if(instance_exists(obj_player2_test) == false){
         if irandom_range(1, 30) &gt; var_stripCalc{
         other.ch_ball = false;
         ch_ball = true;
-        action_create_object_motion(obj_exclam, x, y, 4, 0)
+        //action_create_object_motion(obj_exclam, x, y, 4, 0)
+        scr_create_exclam(x, y, 4, 0)
         sound_play(snd_snitch_grab)
         }
     }
@@ -17293,7 +17296,8 @@ if(instance_exists(obj_player2_test) == false){
             if irandom_range(1, 30) &gt; var_stripCalc{
             other.ch_ball = false;
             ch_ball = true;
-            action_create_object_motion(obj_exclam, x, y, 4, 0)
+            scr_create_exclam(x, y, 4, 0)
+            //action_create_object_motion(obj_exclam, x, y, 4, 0)
             sound_play(snd_snitch_grab)
             }
         }        
@@ -17566,6 +17570,27 @@ if(instance_exists(obj_player2_test) == false){
           <argument>
             <kind>0</kind>
             <string>(y+other.y)/2</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scr_create_exclam(x, y, 13, 0)
+</string>
           </argument>
         </arguments>
       </action>

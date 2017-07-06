@@ -2616,91 +2616,6 @@ global.losses += 1
         <isnot>0</isnot>
       </action>
     </event>
-    <event eventtype="6" enumb="53">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(mouse_x &gt; view_xview[0]+264 and mouse_x &lt; view_xview[0]+263+51) and (mouse_y &gt; view_yview[0]+400+22 and mouse_y &lt; view_yview[0]+400+22+51){
-    with(obj_player_teammate){
-        if(global.powerup == 0){
-            if(st_position &lt; 3){
-                powerup = 1
-            }
-            if (st_position == 3){
-                powerup = 3
-            }
-            if (st_position == 4){
-                powerup = 5
-            }
-        }
-        if(global.powerup == 1){
-            if(st_position &lt; 3){
-                powerup = 1
-            }
-            if (st_position == 3){
-                powerup = 3
-            }
-            if (st_position == 4){
-                powerup = 5
-            }
-        }
-        if(global.powerup == 2){
-            if(st_position &lt; 3){
-                powerup = 1
-            }
-            if (st_position == 3){
-                powerup = 3
-            }
-            if (st_position == 4){
-                powerup = 5
-            }
-        }
-        if(global.powerup == 3){
-            if(st_position &lt; 3){
-                powerup = 1
-            }
-            if (st_position == 3){
-                powerup = 3
-            }
-            if (st_position == 4){
-                powerup = 5
-            }
-        }
-        if(global.powerup == 4){
-            if(st_position &lt; 3){
-                powerup = 1
-            }
-            if (st_position == 3){
-                powerup = 3
-            }
-            if (st_position == 4){
-                powerup = 5
-            }
-        }
-    }
-    global.powerup = 0
-    if(global.mute == false){
-        sound_play(snd_click)
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="7" enumb="4">
       <action>
         <libid>1</libid>
@@ -3560,6 +3475,93 @@ if room == rm_test or room == rm_alt or room == rm_tutorial_alt{
           <argument>
             <kind>0</kind>
             <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="80">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Activates Power up!
+
+//if(mouse_x &gt; view_xview[0]+264 and mouse_x &lt; view_xview[0]+263+51) and (mouse_y &gt; view_yview[0]+400+22 and mouse_y &lt; view_yview[0]+400+22+51){
+    with(obj_player_teammate){
+        if(global.powerup == 0){
+            if(st_position &lt; 3){
+                powerup = 1
+            }
+            if (st_position == 3){
+                powerup = 3
+            }
+            if (st_position == 4){
+                powerup = 5
+            }
+        }
+        if(global.powerup == 1){
+            if(st_position &lt; 3){
+                powerup = 1
+            }
+            if (st_position == 3){
+                powerup = 3
+            }
+            if (st_position == 4){
+                powerup = 5
+            }
+        }
+        if(global.powerup == 2){
+            if(st_position &lt; 3){
+                powerup = 1
+            }
+            if (st_position == 3){
+                powerup = 3
+            }
+            if (st_position == 4){
+                powerup = 5
+            }
+        }
+        if(global.powerup == 3){
+            if(st_position &lt; 3){
+                powerup = 1
+            }
+            if (st_position == 3){
+                powerup = 3
+            }
+            if (st_position == 4){
+                powerup = 5
+            }
+        }
+        if(global.powerup == 4){
+            if(st_position &lt; 3){
+                powerup = 1
+            }
+            if (st_position == 3){
+                powerup = 3
+            }
+            if (st_position == 4){
+                powerup = 5
+            }
+        }
+    }
+    global.powerup = 0
+    if(global.mute == false){
+        sound_play(snd_click)
+    }
+//}
+</string>
           </argument>
         </arguments>
       </action>

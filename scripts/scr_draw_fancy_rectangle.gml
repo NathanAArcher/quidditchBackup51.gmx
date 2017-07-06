@@ -1,3 +1,5 @@
+///scr_draw_fancy_rectangle(x1, y1, x2, y2, maincolor, upperleftborder, lowerrightborder)
+
 xvalue1 = argument0
 yvalue1 = argument1
 xvalue2 = argument2

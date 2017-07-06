@@ -2752,6 +2752,9 @@ img_text = "DISLODGE"
 if img_id == 12{
 img_text = "SWAT"
 }
+if img_id == 13{
+img_text = "SCUFFLE"
+}
 draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
 if count &lt; 20{

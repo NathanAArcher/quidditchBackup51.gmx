@@ -6,7 +6,7 @@
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>obj_player2_test</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>spr_mask_empty</maskName>
   <events>
     <event eventtype="8" enumb="72">
       <action>
@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(x, y, "obj_other_client")
+            <string>//draw_self()
+draw_text(x, y, "obj_other_client")
 </string>
           </argument>
         </arguments>

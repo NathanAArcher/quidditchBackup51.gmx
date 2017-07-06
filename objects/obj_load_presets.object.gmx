@@ -238,7 +238,7 @@ if(room == rm_playmaker_alt or room == rm_playmaker){
         if(string_char_at(fulltext, j) == "c"){
             substring = ""
             //chaser
-            if(string_char_at(fulltext, j+6) == "1"){
+            if(string_char_at(fulltext, j+6) == "1" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -279,8 +279,8 @@ if(room == rm_playmaker_alt or room == rm_playmaker){
             }
             //repeat for chaser2, chaser3, and so on        
     
-            if(string_char_at(fulltext, j+6) == "2"){
-                ////show_message("1 found at " + string(i+6))
+            if(string_char_at(fulltext, j+6) == "2" and string_char_at(fulltext, j+5) == "r"){
+                //show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
                 j = j+9
@@ -315,7 +315,7 @@ if(room == rm_playmaker_alt or room == rm_playmaker){
                 //show_message("Remaining string: " + string_copy(fulltext, j, string_length(fulltext)-1))
             }
             
-            if(string_char_at(fulltext, j+6) == "3"){
+            if(string_char_at(fulltext, j+6) == "3" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -354,7 +354,7 @@ if(room == rm_playmaker_alt or room == rm_playmaker){
         if(string_char_at(fulltext, j) == "k"){
             substring = ""
             //chaser
-            if(string_char_at(fulltext, j+6) == "1"){
+            if(string_char_at(fulltext, j+6) == "1" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -431,7 +431,7 @@ if(room == rm_playmaker_alt or room == rm_playmaker){
                 //show_message("Remaining string: " + string_copy(fulltext, j, string_length(fulltext)-1))
             }
             
-            if(string_char_at(fulltext, j+6) == "2"){
+            if(string_char_at(fulltext, j+6) == "2" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -476,7 +476,7 @@ if room == rm_offense or rm_offense_alt{
         if(string_char_at(fulltext, j) == "c"){
             substring = ""
             //chaser
-            if(string_char_at(fulltext, j+6) == "1"){
+            if(string_char_at(fulltext, j+6) == "1" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -517,7 +517,7 @@ if room == rm_offense or rm_offense_alt{
             }
             //repeat for chaser2, chaser3, and so on        
     
-            if(string_char_at(fulltext, j+6) == "2"){
+            if(string_char_at(fulltext, j+6) == "2" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -553,7 +553,7 @@ if room == rm_offense or rm_offense_alt{
                 //show_message("Remaining string: " + string_copy(fulltext, j, string_length(fulltext)-1))
             }
             
-            if(string_char_at(fulltext, j+6) == "3"){
+            if(string_char_at(fulltext, j+6) == "3" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -592,7 +592,7 @@ if room == rm_offense or rm_offense_alt{
         if(string_char_at(fulltext, j) == "k"){
             substring = ""
             //chaser
-            if(string_char_at(fulltext, j+6) == "1"){
+            if(string_char_at(fulltext, j+6) == "1" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -629,7 +629,7 @@ if room == rm_offense or rm_offense_alt{
                 //show_message("Remaining string: " + string_copy(fulltext, j, string_length(fulltext)-1))
             }
         }
-        if(string_char_at(fulltext, j) == "b"){
+        if(string_char_at(fulltext, j) == "b" and string_char_at(fulltext, j+5) == "r"){
             substring = ""
             //beater
             if(string_char_at(fulltext, j+6) == "1"){
@@ -669,7 +669,7 @@ if room == rm_offense or rm_offense_alt{
                 //show_message("Remaining string: " + string_copy(fulltext, j, string_length(fulltext)-1))
             }
             
-            if(string_char_at(fulltext, j+6) == "2"){
+            if(string_char_at(fulltext, j+6) == "2" and string_char_at(fulltext, j+5) == "r"){
                 ////show_message("1 found at " + string(i+6))
                 k = 0
                 //character at i+9 will be the first number of the x location
@@ -714,6 +714,8 @@ if room == rm_playmaker or room == rm_playmaker_alt or room == rm_offense or roo
     with obj_player_position{ //clears old starters to make room for possible changes, prevents duplicates
         instance_destroy()
     }
+    //show_message("Before: C2: " + string(chaser2X) + ", " + string(chaser2Y) + "; B2: " + string(beater2X) + ", " + string(beater2Y))
+    //show_message("After: C2: " + string(chaser2X*xmodifier+xintercept) + ", " + string(chaser2Y*ymodifier) + "; B2: " + string(beater2X*xmodifier+xintercept) + ", " + string(beater2Y*ymodifier))
     for(i = 0; i &lt; 7; i += 1){
         if obj_controller.charray[i, 11] == 1 {
                 if global.chasers == 0 {

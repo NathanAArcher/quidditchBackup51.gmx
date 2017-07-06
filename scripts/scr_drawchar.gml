@@ -899,3 +899,21 @@ if scuffling == false or st_position == 4{
         }
     }
 }
+
+if(global.debugmode) or (global.online){
+    if(string(object_get_name(object_index)) == "obj_player2_test"){
+        if(obj_controller.online_client_movement_array[0] != 0){
+            draw_sprite_ext(spr_wasd_debug, 0, x, y+64, 1, 1, 0, c_white, 1)
+        }
+        if(obj_controller.online_client_movement_array[1] != 0){
+            draw_sprite_ext(spr_wasd_debug, 1, x, y+64, 1, 1, 0, c_white, 1)
+        }
+        if(obj_controller.online_client_movement_array[2] != 0){
+            draw_sprite_ext(spr_wasd_debug, 2, x, y+64, 1, 1, 0, c_white, 1)
+        }
+        if(obj_controller.online_client_movement_array[3] != 0){
+            draw_sprite_ext(spr_wasd_debug, 3, x, y+64, 1, 1, 0, c_white, 1)
+        }
+    }
+    draw_text(x, y+48, string(object_get_name(object_index)))
+}
